@@ -1,15 +1,18 @@
 ---
 title: Replacing Redis-To-Go Heroku Add-on
 heroImg: /uploads/ferrari-3090880_1920.jpg
-excerpt: >
-  ## How Did We Replace the Redis-To-Go Heroku Add-on When It Became
-  Discontinued
+excerpt: |
+  How Did We Replace the Redis-To-Go Heroku Add-on When It Became Discontinued
 author: content/authors/wheel-run-team.md
+date: '2022-07-22T07:00:00.000Z'
 ---
+# Introduction
+
+Heroku Add-on goes off on August 8th, 2022. Hence we have to replace it with another service.
 
 # Which Service?
 
-We decided to go with the [Heroku Data For Redis](https://devcenter.heroku.com/articles/heroku-redis).
+We decided to go with the [Heroku Data For Redis](https://devcenter.heroku.com/articles/heroku-redis).
 
 # Steps We Followed
 
@@ -21,28 +24,28 @@ We had to change the config/cable.yml file to reference the `REDIS_URL` and not 
 # config/cable.yml
 # ...
 production:
- adapter: any_cable
- url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
- channel_prefix: wheel_run_backend_api_production
+  adapter: any_cable
+  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  channel_prefix: wheel_run_backend_api_production
 ```
 
 ## DEPLOY NEW CONFIGURATION
 
-After we created a PR and waited for the tests to run successfully, then we used the script:‍
+After we created a PR and waited for the tests to run successfully, then we used the script:
 
 ```bash
 $ ./bin/deploy.rb
 ```
 
-‍to deploy to production.
+to deploy to production.
 
-‍Note: In the future, we might want to use Github actions to do the deployment.
+Note: In the future, we might want to use Github actions to do the deployment.
 
 ## STOP DYNOS FROM RUNNING.
 
 We wanted to make sure that the application is not servicing any clients.
 
-‍First the Ruby on Rails server:
+First the Ruby on Rails server:
 
 ```bash
 $ heroku ps:scale web=0 worker=0 --app wheel-run-backend-api
@@ -64,41 +67,29 @@ $ heroku addons:destroy <redis-go-to-add-on-name> --app wheel-run-backend-api
 
 ## PROVISION THE NEW ADD-ON
 
-‍
-
 ```bash
 $ heroku addons:create heroku-redis:hobby-dev --ap wheel-run-backend-api
 ```
 
-‍
-
 ## ATTACH THE NEW ADD-ON TO WEBSOCKET SERVER
-
-‍
 
 ```
 $ heroku addons:attach wheel-run-backend-api::REDIS --app wheel-run-backend-api-ws
 ```
 
-***
+## RESTART DYNOS
 
-## ‍RESTART DYNOS
-
-‍On Ruby on Rails server app:
+On Ruby on Rails server app:
 
 ```bash
 $ heroku ps:scale web=1 worker=1 --app wheel-run-backend-api
 ```
-
-‍
 
 On AnyCable Web Sockets server app:
 
 ```bash
 $ heroku ps:scale web=1 --app wheel-run-backend-api-ws
 ```
-
-***
 
 ## MANUAL TESTS
 
