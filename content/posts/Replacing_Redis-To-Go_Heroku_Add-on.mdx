@@ -4,6 +4,7 @@ heroImg: /uploads/ferrari-3090880_1920.jpg
 excerpt: >
   ## How Did We Replace the Redis-To-Go Heroku Add-on When It Became
   Discontinued
+author: content/authors/wheel-run-team.md
 ---
 
 # Which Service?
@@ -79,7 +80,7 @@ $ heroku addons:create heroku-redis:hobby-dev --ap wheel-run-backend-api
 $ heroku addons:attach wheel-run-backend-api::REDIS --app wheel-run-backend-api-ws
 ```
 
-****
+***
 
 ## ‍RESTART DYNOS
 
@@ -97,7 +98,7 @@ On AnyCable Web Sockets server app:
 $ heroku ps:scale web=1 --app wheel-run-backend-api-ws
 ```
 
-****
+***
 
 ## MANUAL TESTS
 
