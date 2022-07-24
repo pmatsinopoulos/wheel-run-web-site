@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Actions } from "../util/actions";
-import { Container } from "../util/container";
+import { ContainerWithBackgroundImage } from "../util/containerWithBackgroundImage";
 import { Section } from "../util/section";
 import { useTheme } from "../layout";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -21,7 +21,8 @@ export const Hero = ({ data, parentField }) => {
 
   return (
     <Section color={data.color}>
-      <Container
+      <ContainerWithBackgroundImage
+        backgroundimage={data.image}
         size="large"
         className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-8 items-center justify-center"
       >
@@ -70,19 +71,7 @@ export const Hero = ({ data, parentField }) => {
             />
           )}
         </div>
-        {data.image && (
-          <div
-            data-tinafield={`${parentField}.image`}
-            className="row-start-1 flex justify-center"
-          >
-            <img
-              className="w-full max-w-xs lg:max-w-none h-auto"
-              alt={data.image.alt}
-              src={data.image.src}
-            />
-          </div>
-        )}
-      </Container>
+      </ContainerWithBackgroundImage>
     </Section>
   );
 };
