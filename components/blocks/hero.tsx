@@ -30,7 +30,7 @@ export const Hero = ({ data, parentField }) => {
           {data.tagline && (
             <h2
               data-tinafield={`${parentField}.tagline`}
-              className="relative inline-block px-3 py-1 mb-8 text-md font-bold tracking-wide title-font z-20"
+              className="relative inline-block px-3 py-1 mb-8 text-md font-bold tracking-wide title-font z-20 text-white"
             >
               {data.tagline}
               <span className="absolute w-full h-full left-0 top-0 rounded-full -z-1 bg-current opacity-7"></span>
@@ -42,11 +42,7 @@ export const Hero = ({ data, parentField }) => {
               className={`w-full relative	mb-10 text-5xl font-extrabold tracking-normal leading-tight title-font`}
             >
               <span
-                className={`bg-clip-text text-transparent bg-gradient-to-r  ${
-                  data.color === "primary"
-                    ? `from-white to-gray-100`
-                    : headlineColorClasses[theme.color]
-                }`}
+                className='text-white'
               >
                 {data.headline}
               </span>

@@ -87,9 +87,10 @@ export const Actions = ({
                 <a
                   data-tinafield={`${parentField}.${index}`}
                   className={`group inline-flex items-center font-semibold text-lg transition duration-150 ease-out ${
-                    parentColor === "primary"
-                      ? `text-white  hover:text-gray-50`
-                      : linkButtonColorClasses[theme.color]
+                    //parentColor === "primary"
+                      //
+                       `text-white  hover:text-gray-50`
+                      //: linkButtonColorClasses[theme.color]
                   }`}
                   style={{
                     textShadow: `0 3px 7px rgba(var(--color-rgb-blue-400),0.2)`,

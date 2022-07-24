@@ -4,14 +4,14 @@ blocks:
     headline: Manage Your Cars and Motorcycles
     text: ''
     actions:
-      - label: Get Started
+      - label: Download App
         type: button
-        icon: true
-        link: /posts
-      - label: Read Blog
+        icon: false
+        link: '#download-app'
+      - label: Learn More
         type: link
         icon: false
-        link: /posts
+        link: '#what-we-do'
     image:
       src: >-
         https://res.cloudinary.com/oneth0usandwords/image/upload/v1658642896/wheel-run/production/website/shelby_lyvice.jpg
