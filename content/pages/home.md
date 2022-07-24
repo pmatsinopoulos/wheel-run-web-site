@@ -1,12 +1,8 @@
 ---
 blocks:
-  - headline: Welcome to the Tina Starter
-    text: >
-      This project is set up to show you the basics of working with Tina. You're
-      looking at the landing page, which pulls content from
-      content/pages/home.md, components from components/blocks, and puts them
-      all together in pages/\[filename].tsx, all based on a schema defined in
-      .tina/schema.ts.
+  - tagline: Any Vehicle
+    headline: Manage Your Cars and Motorcycles
+    text: ''
     actions:
       - label: Get Started
         type: button
@@ -17,8 +13,9 @@ blocks:
         icon: false
         link: /posts
     image:
-      src: /uploads/tina-illustration.webp
-      alt: Tina
+      src: >-
+        https://res.cloudinary.com/oneth0usandwords/image/upload/v1658642896/wheel-run/production/website/shelby_lyvice.jpg
+      alt: Shelby
     color: default
     _template: hero
   - items:

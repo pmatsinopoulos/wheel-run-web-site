@@ -9,15 +9,15 @@ const schema = defineSchema({
   config: {
     media: {
       // If you wanted cloudinary do this
-      // loadCustomStore: async () => {
-      //   const pack = await import("next-tinacms-cloudinary");
-      //   return pack.TinaCloudCloudinaryMediaStore;
-      // },
-      // this is the config for the tina cloud media store
-      tina: {
-        publicFolder: "public",
-        mediaRoot: "uploads",
+      loadCustomStore: async () => {
+        const pack = await import("next-tinacms-cloudinary");
+        return pack.TinaCloudCloudinaryMediaStore;
       },
+      // this is the config for the tina cloud media store
+      // tina: {
+      //   publicFolder: "public",
+      //   mediaRoot: "uploads",
+      // },
     },
   },
   collections: [
@@ -31,6 +31,8 @@ const schema = defineSchema({
           type: "string",
           label: "Title",
           name: "title",
+          isTitle: true,
+          required: true,
         },
         {
           type: "image",
@@ -140,6 +142,12 @@ const schema = defineSchema({
           name: "header",
           fields: [
             iconSchema,
+            {
+              type: "string",
+              label: "Brand",
+              name: "brand",
+              options: ["WheelRun"],
+            },
             {
               type: "string",
               label: "Color",

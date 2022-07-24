@@ -61,7 +61,7 @@ export const Header = ({ data }) => {
           <h4 className="select-none text-lg font-bold tracking-tight my-4 transition duration-150 ease-out transform">
             <Link href="/" passHref>
               <a className="flex items-center">
-                <Icon
+                {/* <Icon
                   parentColor={data.color}
                   data={{
                     name: data.icon.name,
@@ -69,8 +69,8 @@ export const Header = ({ data }) => {
                     style: data.icon.style,
                   }}
                   className="inline-block h-auto w-10 mr-1"
-                />{" "}
-                Tina Starter
+                />{" "} */}
+                { data.brand }
               </a>
             </Link>
           </h4>

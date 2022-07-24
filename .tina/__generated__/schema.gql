@@ -86,7 +86,7 @@ union DocumentNode = Post | Global | Author | Page
 union PostAuthor = Author
 
 type Post implements Node & Document {
-  title: String
+  title: String!
   heroImg: String
   excerpt: JSON
   author: PostAuthor
@@ -121,6 +121,7 @@ type GlobalHeaderNav {
 
 type GlobalHeader {
   icon: GlobalHeaderIcon
+  brand: String
   color: String
   nav: [GlobalHeaderNav]
 }
@@ -296,6 +297,7 @@ input GlobalHeaderNavMutation {
 
 input GlobalHeaderMutation {
   icon: GlobalHeaderIconMutation
+  brand: String
   color: String
   nav: [GlobalHeaderNavMutation]
 }

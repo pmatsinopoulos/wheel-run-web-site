@@ -3,8 +3,9 @@
     "icon": {
       "color": "orange",
       "style": "float",
-      "name": "tina"
+      "name": "tube"
     },
+    "brand": "WheelRun",
     "color": "default",
     "nav": [
       {
