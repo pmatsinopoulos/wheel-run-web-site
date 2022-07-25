@@ -184,6 +184,18 @@ type AuthorConnection implements Connection {
   edges: [AuthorConnectionEdges]
 }
 
+type PageBlocksImageTextSectionImage {
+  src: String
+  alt: String
+}
+
+type PageBlocksImageTextSection {
+  headline: String
+  text: JSON
+  image: PageBlocksImageTextSectionImage
+  color: String
+}
+
 type PageBlocksHeroActions {
   label: String
   type: String
@@ -239,7 +251,7 @@ type PageBlocksTestimonial {
   color: String
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksContent | PageBlocksTestimonial
+union PageBlocks = PageBlocksImageTextSection | PageBlocksHero | PageBlocksFeatures | PageBlocksContent | PageBlocksTestimonial
 
 type Page implements Node & Document {
   blocks: [PageBlocks]
@@ -338,6 +350,18 @@ input AuthorMutation {
   avatar: String
 }
 
+input PageBlocksImageTextSectionImageMutation {
+  src: String
+  alt: String
+}
+
+input PageBlocksImageTextSectionMutation {
+  headline: String
+  text: JSON
+  image: PageBlocksImageTextSectionImageMutation
+  color: String
+}
+
 input PageBlocksHeroActionsMutation {
   label: String
   type: String
@@ -394,6 +418,7 @@ input PageBlocksTestimonialMutation {
 }
 
 input PageBlocksMutation {
+  imageTextSection: PageBlocksImageTextSectionMutation
   hero: PageBlocksHeroMutation
   features: PageBlocksFeaturesMutation
   content: PageBlocksContentMutation

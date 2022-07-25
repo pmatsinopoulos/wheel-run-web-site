@@ -56,6 +56,16 @@ fragment AuthorParts on Author {
 fragment PageParts on Page {
   blocks {
     __typename
+    ... on PageBlocksImageTextSection {
+      headline
+      text
+      image {
+        __typename
+        src
+        alt
+      }
+      color
+    }
     ... on PageBlocksHero {
       tagline
       headline

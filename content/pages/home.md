@@ -59,5 +59,13 @@ blocks:
           online
     color: tint
     _template: features
+  - headline: Cars & Motorcycles
+    text: "You can register all your vehicles with\n\n*   Name\n*   Notes\n*   Odometer\n*   Date of Purchase\n*   Distance for Notification\n*   Days for Notification\n*   Images\n\nYou can\_**Assign**\_the vehicle to a user of your\_**Workspace.**\n\nYou can be\_**Notified**\_on\_**Due**\_and\_**Overdue**\_services.\n"
+    image:
+      src: >-
+        https://res.cloudinary.com/oneth0usandwords/image/upload/v1658726197/wheel-run/production/website/oldtimer-1197800_640_h4vrg8.jpg
+      alt: Red car old timer
+    color: tint
+    _template: imageTextSection
 ---
 

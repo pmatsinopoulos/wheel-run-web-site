@@ -3,6 +3,7 @@ import type { Page } from "../.tina/__generated__/types";
 import { Content } from "./blocks/content";
 import { Features } from "./blocks/features";
 import { Hero } from "./blocks/hero";
+import { ImageTextSection } from "./blocks/imageTextSection";
 import { Testimonial } from "./blocks/testimonial";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
@@ -29,6 +30,15 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     <Hero data={block} parentField={`blocks.${i}`} />
                   </div>
                 );
+              case "PageBlocksImageTextSection":
+                  return (
+                    <div
+                      data-tinafield={`blocks.${i}`}
+                      key={i + block.__typename}
+                    >
+                      <ImageTextSection data={block} parentField={`blocks.${i}`} />
+                    </div>
+                  );
               case "PageBlocksFeatures":
                 return (
                   <div
