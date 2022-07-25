@@ -12,12 +12,15 @@ export const Feature = ({ featuresColor, data, tinaField }) => {
       className="flex-1 flex flex-col gap-6 text-center items-center lg:items-start lg:text-left max-w-xl mx-auto"
       style={{ flexBasis: "16rem" }}
     >
-      {data.icon && (
+      {data.icon && !data.image && (
         <Icon
           tinaField={`${tinaField}.icon`}
           parentColor={featuresColor}
           data={{ size: "large", ...data.icon }}
         />
+      )}
+      {data.image && (
+        <img src={data.image.src} alt={data.image.alt}/>
       )}
       {data.title && (
         <h3
@@ -95,6 +98,23 @@ export const featureBlockSchema: TinaTemplate = {
       },
       fields: [
         iconSchema,
+        {
+          type: "object",
+          label: "Image",
+          name: "image",
+          fields: [
+            {
+              type: "image",
+              label: "Src",
+              name: "src"
+            },
+            {
+              type: "string",
+              label: "Alt Text",
+              name: "alt"
+            }
+          ]
+        },
         {
           type: "string",
           label: "Title",

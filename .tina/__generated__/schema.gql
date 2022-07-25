@@ -211,8 +211,14 @@ type PageBlocksFeaturesItemsIcon {
   name: String
 }
 
+type PageBlocksFeaturesItemsImage {
+  src: String
+  alt: String
+}
+
 type PageBlocksFeaturesItems {
   icon: PageBlocksFeaturesItemsIcon
+  image: PageBlocksFeaturesItemsImage
   title: String
   text: String
 }
@@ -359,8 +365,14 @@ input PageBlocksFeaturesItemsIconMutation {
   name: String
 }
 
+input PageBlocksFeaturesItemsImageMutation {
+  src: String
+  alt: String
+}
+
 input PageBlocksFeaturesItemsMutation {
   icon: PageBlocksFeaturesItemsIconMutation
+  image: PageBlocksFeaturesItemsImageMutation
   title: String
   text: String
 }
