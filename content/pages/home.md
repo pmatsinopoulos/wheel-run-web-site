@@ -101,7 +101,7 @@ blocks:
       src: >-
         https://res.cloudinary.com/oneth0usandwords/image/upload/v1658776951/wheel-run/production/website/motorcycle-5927265_640_in_country_idpq9z.jpg
       alt: Motorcycle in country side
-    color: default
+    color: tint
     _template: imageTextSection
   - headline: Notifications
     text: "Get notified, by email and by push notifications to your mobile app every time a service is\_**due**\_or\_**overdue**.\n\nAll the assignees of the vehicle or the service or of individual tasks are being notified.\n\nNotifications are emitting either when a dates is approaching or your vehicle is reaching a specific odometer value. Or you can have notifications that combine both.\n"
@@ -217,6 +217,8 @@ blocks:
         src: >-
           https://res.cloudinary.com/oneth0usandwords/image/upload/v1658984071/wheel-run/production/website/google-play-badge_zrtnjd.png
         alt: Get it on Google Play
+        hyperlink: >-
+          https://play.google.com/store/apps/details?id=biz.wheelrun&utm_source=website&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
     secondColumn:
       headline: iPhone
       text: >-
@@ -225,6 +227,8 @@ blocks:
       image:
         src: >-
           https://res.cloudinary.com/oneth0usandwords/image/upload/v1658984086/wheel-run/production/website/iphone-badge_gav1xa.png
+        alt: Download on the App Store
+        hyperlink: 'https://apps.apple.com/us/app/wheel-run/id1498316635'
     color: tint
     _template: twoColumnsContent
 ---

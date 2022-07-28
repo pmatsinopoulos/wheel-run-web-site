@@ -248,6 +248,7 @@ type PageBlocksContent {
 type PageBlocksTwoColumnsContentFirstColumnImage {
   src: String
   alt: String
+  hyperlink: String
 }
 
 type PageBlocksTwoColumnsContentFirstColumn {
@@ -259,6 +260,7 @@ type PageBlocksTwoColumnsContentFirstColumn {
 type PageBlocksTwoColumnsContentSecondColumnImage {
   src: String
   alt: String
+  hyperlink: String
 }
 
 type PageBlocksTwoColumnsContentSecondColumn {
@@ -443,6 +445,7 @@ input PageBlocksContentMutation {
 input PageBlocksTwoColumnsContentFirstColumnImageMutation {
   src: String
   alt: String
+  hyperlink: String
 }
 
 input PageBlocksTwoColumnsContentFirstColumnMutation {
@@ -454,6 +457,7 @@ input PageBlocksTwoColumnsContentFirstColumnMutation {
 input PageBlocksTwoColumnsContentSecondColumnImageMutation {
   src: String
   alt: String
+  hyperlink: String
 }
 
 input PageBlocksTwoColumnsContentSecondColumnMutation {

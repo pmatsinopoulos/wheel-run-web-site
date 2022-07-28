@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Container } from "../util/container";
 import { Section } from "../util/section";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { TinaTemplate } from "tinacms";
+import OptionalLinkWrapper from "../util/optionalLinkWrapper";
 
 const Column = ({ column, parentField }) => {
   return (
@@ -18,7 +18,9 @@ const Column = ({ column, parentField }) => {
       </p>
       {column.image && (
         <div className="h-20">
-          <img className="h-full" src={column.image.src} alt={column.image.alt} />
+          <OptionalLinkWrapper hyperlink={column.image.hyperlink}>
+            <img className="h-full" src={column.image.src} alt={column.image.alt} />
+          </OptionalLinkWrapper>
         </div>
       )}
     </div>
@@ -88,7 +90,7 @@ export const twoColumnsContentBlockSchema: TinaTemplate = {
           },
         },
         {
-          label: "Image",
+          label: "Image with Optional Hyperlink",
           name: "image",
           type: "object",
           fields: [
@@ -101,6 +103,11 @@ export const twoColumnsContentBlockSchema: TinaTemplate = {
               label: "Alt Text",
               type: "string",
               name: "alt"
+            },
+            {
+              label: "Hyperlink",
+              type: "string",
+              name: "hyperlink"
             }
           ]
         }
@@ -125,7 +132,7 @@ export const twoColumnsContentBlockSchema: TinaTemplate = {
           },
         },
         {
-          label: "Image",
+          label: "Image with Optional Hyperlink",
           name: "image",
           type: "object",
           fields: [
@@ -138,6 +145,11 @@ export const twoColumnsContentBlockSchema: TinaTemplate = {
               label: "Alt Text",
               type: "string",
               name: "alt"
+            },
+            {
+              label: "Hyperlink",
+              type: "string",
+              name: "hyperlink"
             }
           ]
         }
