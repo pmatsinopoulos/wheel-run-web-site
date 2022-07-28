@@ -107,6 +107,30 @@ fragment PageParts on Page {
       body
       color
     }
+    ... on PageBlocksTwoColumnsContent {
+      headline
+      firstColumn {
+        __typename
+        headline
+        text
+        image {
+          __typename
+          src
+          alt
+        }
+      }
+      secondColumn {
+        __typename
+        headline
+        text
+        image {
+          __typename
+          src
+          alt
+        }
+      }
+      color
+    }
     ... on PageBlocksTestimonial {
       quote
       author

@@ -1,6 +1,7 @@
 import React from "react";
 import type { Page } from "../.tina/__generated__/types";
 import { Content } from "./blocks/content";
+import { TwoColumnsContent } from "./blocks/twoColumnsContent";
 import { Features } from "./blocks/features";
 import { Hero } from "./blocks/hero";
 import { ImageTextSection } from "./blocks/imageTextSection";
@@ -21,7 +22,16 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     <Content data={block} parentField={`blocks.${i}`} />
                   </div>
                 );
-              case "PageBlocksHero":
+                case "PageBlocksTwoColumnsContent":
+                  return (
+                    <div
+                      data-tinafield={`blocks.${i}`}
+                      key={i + block.__typename}
+                    >
+                      <TwoColumnsContent data={block} parentField={`blocks.${i}`} />
+                    </div>
+                  );
+                case "PageBlocksHero":
                 return (
                   <div
                     data-tinafield={`blocks.${i}`}

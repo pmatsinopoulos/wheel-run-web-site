@@ -1,5 +1,6 @@
 import { defineSchema, defineConfig } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
+import { twoColumnsContentBlockSchema } from "../components/blocks/twoColumnsContent";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
 import { imageTextSectionSchema } from "../components/blocks/imageTextSection";
@@ -147,7 +148,7 @@ const schema = defineSchema({
               type: "string",
               label: "Brand",
               name: "brand",
-              options: ["WheelRun"],
+              options: ["Wheel Run"],
             },
             {
               type: "string",
@@ -367,6 +368,7 @@ const schema = defineSchema({
             heroBlockSchema,
             featureBlockSchema,
             contentBlockSchema,
+            twoColumnsContentBlockSchema,
             testimonialBlockSchema,
           ],
         },
