@@ -1,24 +1,27 @@
 ---
 blocks:
-  - tagline: Any Vehicle
+  - sectionLabel: 'Hero: Manage Your Cars and Motorcycles'
+    tagline: Any Vehicle
     headline: Manage Your Cars and Motorcycles
     text: ''
     actions:
       - label: Download App
         type: button
         icon: false
-        link: '#download-app'
+        link: '#download'
       - label: Learn More
         type: link
         icon: false
-        link: '#what-we-do'
+        link: '#learn-more'
     image:
       src: >-
         https://res.cloudinary.com/oneth0usandwords/image/upload/v1658642896/wheel-run/production/website/shelby_lyvice.jpg
       alt: Shelby
     color: default
     _template: hero
-  - body: |
+  - sectionLabel: 'Content: What do we do?'
+    id: learn-more
+    body: |
       # What do we do?
 
       ## We give you the tools to manage your vehicles!
@@ -59,7 +62,9 @@ blocks:
           online
     color: tint
     _template: features
-  - headline: Cars & Motorcycles
+  - sectionLabel: 'Image Text Section: Cars & Motorcycles'
+    id: cars-and-motorcycles
+    headline: Cars & Motorcycles
     text: "You can register all your vehicles with\n\n*   Name\n*   Notes\n*   Odometer\n*   Date of Purchase\n*   Distance for Notification\n*   Days for Notification\n*   Images\n\nYou can\_**Assign**\_the vehicle to a user of your\_**Workspace.**\n\nYou can be\_**Notified**\_on\_**Due**\_and\_**Overdue**\_services.\n"
     image:
       src: >-
@@ -67,7 +72,9 @@ blocks:
       alt: Red car old timer
     color: tint
     _template: imageTextSection
-  - headline: Scheduled Services
+  - sectionLabel: 'Image Text Section: Scheduled Services'
+    id: scheduled-services
+    headline: Scheduled Services
     text: "**Schedule**\_your services with ease and flexibility. You can schedule a service using different scheduling schemes like:\n\n*   At specific number of kms from start.\n*   At specific number of kms from the previous service.\n*   Periodically, every specific number of kms.\n*   On specific date in the future.\n*   Using days, or weeks or months, or even years.\n*   With combinations like \"after 10.000km or on specific date, whichever comes first\".\n"
     image:
       src: >-
@@ -75,7 +82,9 @@ blocks:
       alt: Motorcyclist road ahead
     color: tint
     _template: imageTextSection
-  - headline: Task Lists
+  - sectionLabel: 'Image Text Section: Task Lists'
+    id: task-lists
+    headline: Task Lists
     text: >
       Each service can have a task list with tasks that need to be carried out
       as part of a service execution. For example, a task to "Change Oil
@@ -91,7 +100,9 @@ blocks:
       alt: Motorcyclists on high road
     color: tint
     _template: imageTextSection
-  - headline: Assignments
+  - sectionLabel: 'Image Text Section: Assignments'
+    id: assignments
+    headline: Assignments
     text: >
       Assign the vehicles or the scheduled services to engineers in your
       workspace. They will get notified for due and overdue service plans. You
@@ -103,7 +114,9 @@ blocks:
       alt: Motorcycle in country side
     color: tint
     _template: imageTextSection
-  - headline: Notifications
+  - sectionLabel: 'Image Text Section: Notifications'
+    id: notifications
+    headline: Notifications
     text: "Get notified, by email and by push notifications to your mobile app every time a service is\_**due**\_or\_**overdue**.\n\nAll the assignees of the vehicle or the service or of individual tasks are being notified.\n\nNotifications are emitting either when a dates is approaching or your vehicle is reaching a specific odometer value. Or you can have notifications that combine both.\n"
     image:
       src: >-
@@ -111,7 +124,9 @@ blocks:
       alt: Cuba old car on road
     color: tint
     _template: imageTextSection
-  - headline: Services
+  - sectionLabel: 'Image Text Section: Services'
+    id: services
+    headline: Services
     text: >
       Do your services based on scheduled services. The scheduled service is a
       service that you have planned in advance. When the time comes to do the
@@ -127,7 +142,9 @@ blocks:
       alt: Ferrari sport red
     color: tint
     _template: imageTextSection
-  - headline: Unscheduled Services
+  - sectionLabel: 'Image Text Section: Unscheduled Services'
+    id: unscheduled-services
+    headline: Unscheduled Services
     text: >
       Services are scheduled, but there are cases in which an unscheduled
       once-off repair might need to take place.
@@ -142,7 +159,9 @@ blocks:
       alt: Vespa by the sea
     color: tint
     _template: imageTextSection
-  - headline: History
+  - sectionLabel: 'Image Text Section: History'
+    id: history
+    headline: History
     text: >
       All the scheduled and unscheduled services are saved online and you have
       access to them via the history of the vehicle.
@@ -157,7 +176,9 @@ blocks:
       alt: Motorcycle in front of sunset
     color: tint
     _template: imageTextSection
-  - headline: Personal Use
+  - sectionLabel: 'Image Text Section: Personal Use'
+    id: personal-use
+    headline: Personal Use
     text: >
       Use Wheel Run to manage the services of your family or other personal
       vehicles. It's simple to use and you have everything online.
@@ -167,7 +188,9 @@ blocks:
       alt: Car behind another
     color: tint
     _template: imageTextSection
-  - headline: Business Use
+  - sectionLabel: 'Image Text Section: Business Use'
+    id: business-use
+    headline: Business Use
     text: >
       Wheel Run is ideal for business use too. You can declare numerous vehicles
       and keep track of their services.
@@ -186,7 +209,9 @@ blocks:
       alt: Truck Fleet
     color: tint
     _template: imageTextSection
-  - headline: Users
+  - sectionLabel: 'Image Text Section: Users'
+    id: users
+    headline: Users
     text: >
       You can invite many users to your account, i.e. to your workspace. This
       allows you to have many engineers or employees or other users managing the
@@ -197,7 +222,9 @@ blocks:
       alt: Car Engineers
     color: tint
     _template: imageTextSection
-  - headline: Kilometers or Miles
+  - sectionLabel: 'Image Text Section: Kilometers Or Miles'
+    id: '#kilometers-or-miles'
+    headline: Kilometers or Miles
     text: >
       Do you use kilometers or miles? This is not a problem. You can have any of
       the two measurement units that you like and are used to.
@@ -207,7 +234,9 @@ blocks:
       alt: Motorcycle Odometer
     color: tint
     _template: imageTextSection
-  - headline: Download
+  - sectionLabel: 'Two Columns Content: Download'
+    id: download
+    headline: Download
     firstColumn:
       headline: Android
       text: >-

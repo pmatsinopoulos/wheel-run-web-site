@@ -29,7 +29,7 @@ const Column = ({ column, parentField }) => {
 
 export const TwoColumnsContent = ({ data, parentField }) => {
   return (
-    <Section color={data.color}>
+    <Section id={data.id} color={data.color}>
       <Container
         size="large"
         className="gap-x-10 gap-y-8 items-center justify-center"
@@ -37,6 +37,7 @@ export const TwoColumnsContent = ({ data, parentField }) => {
         {data.headline && (
           <div>
             <h2
+              id={data.id}
               data-tinafield={`${parentField}.headline`}
               className={`w-full relative	mb-10 text-5xl font-extrabold tracking-normal leading-tight title-font`}
             >
@@ -65,7 +66,27 @@ export const TwoColumnsContent = ({ data, parentField }) => {
 export const twoColumnsContentBlockSchema: TinaTemplate = {
   name: "twoColumnsContent",
   label: "Two Columns Content",
+  ui: {
+    defaultItem: {
+      sectionLabel: "Two Columns Content",
+    },
+    itemProps: (item) => {
+      return {
+        label: item?.sectionLabel,
+      };
+    }
+  },
   fields: [
+    {
+      type: "string",
+      label: "Section Label",
+      name: "sectionLabel",
+    },
+    {
+      label: "id",
+      type: "string",
+      name: "id"
+    },
     {
       label: "Headline",
       type: "string",

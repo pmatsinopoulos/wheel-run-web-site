@@ -190,6 +190,8 @@ type PageBlocksImageTextSectionImage {
 }
 
 type PageBlocksImageTextSection {
+  sectionLabel: String
+  id: String
   headline: String
   text: JSON
   image: PageBlocksImageTextSectionImage
@@ -209,6 +211,8 @@ type PageBlocksHeroImage {
 }
 
 type PageBlocksHero {
+  sectionLabel: String
+  id: String
   tagline: String
   headline: String
   text: JSON
@@ -236,11 +240,15 @@ type PageBlocksFeaturesItems {
 }
 
 type PageBlocksFeatures {
+  sectionLabel: String
+  id: String
   items: [PageBlocksFeaturesItems]
   color: String
 }
 
 type PageBlocksContent {
+  sectionLabel: String
+  id: String
   body: JSON
   color: String
 }
@@ -270,6 +278,8 @@ type PageBlocksTwoColumnsContentSecondColumn {
 }
 
 type PageBlocksTwoColumnsContent {
+  sectionLabel: String
+  id: String
   headline: String
   firstColumn: PageBlocksTwoColumnsContentFirstColumn
   secondColumn: PageBlocksTwoColumnsContentSecondColumn
@@ -277,6 +287,8 @@ type PageBlocksTwoColumnsContent {
 }
 
 type PageBlocksTestimonial {
+  sectionLabel: String
+  id: String
   quote: String
   author: String
   color: String
@@ -387,6 +399,8 @@ input PageBlocksImageTextSectionImageMutation {
 }
 
 input PageBlocksImageTextSectionMutation {
+  sectionLabel: String
+  id: String
   headline: String
   text: JSON
   image: PageBlocksImageTextSectionImageMutation
@@ -406,6 +420,8 @@ input PageBlocksHeroImageMutation {
 }
 
 input PageBlocksHeroMutation {
+  sectionLabel: String
+  id: String
   tagline: String
   headline: String
   text: JSON
@@ -433,11 +449,15 @@ input PageBlocksFeaturesItemsMutation {
 }
 
 input PageBlocksFeaturesMutation {
+  sectionLabel: String
+  id: String
   items: [PageBlocksFeaturesItemsMutation]
   color: String
 }
 
 input PageBlocksContentMutation {
+  sectionLabel: String
+  id: String
   body: JSON
   color: String
 }
@@ -467,6 +487,8 @@ input PageBlocksTwoColumnsContentSecondColumnMutation {
 }
 
 input PageBlocksTwoColumnsContentMutation {
+  sectionLabel: String
+  id: String
   headline: String
   firstColumn: PageBlocksTwoColumnsContentFirstColumnMutation
   secondColumn: PageBlocksTwoColumnsContentSecondColumnMutation
@@ -474,6 +496,8 @@ input PageBlocksTwoColumnsContentMutation {
 }
 
 input PageBlocksTestimonialMutation {
+  sectionLabel: String
+  id: String
   quote: String
   author: String
   color: String

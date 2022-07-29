@@ -1,7 +1,8 @@
 import React from "react";
 import { useTheme } from "../layout";
+import { v4 as uuidv4 } from "uuid";
 
-export const Section = ({ children, color = "", className = "" }) => {
+export const Section = ({ id = "", children, color = "", className = "" }) => {
   const theme = useTheme();
   const sectionColor = {
     default:
@@ -31,6 +32,7 @@ export const Section = ({ children, color = "", className = "" }) => {
 
   return (
     <section
+      id={id || uuidv4()}
       className={`flex-1 relative transition duration-150 ease-out body-font overflow-hidden ${sectionColorCss} ${className}`}
     >
       {children}

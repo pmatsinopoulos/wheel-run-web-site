@@ -45,7 +45,7 @@ export const Feature = ({ featuresColor, data, tinaField }) => {
 
 export const Features = ({ data, parentField }) => {
   return (
-    <Section color={data.color}>
+    <Section id={data.id} color={data.color}>
       <Container
         className={`flex flex-wrap gap-x-10 gap-y-8 text-left`}
         size="large"
@@ -83,9 +83,25 @@ export const featureBlockSchema: TinaTemplate = {
     previewSrc: "/blocks/features.png",
     defaultItem: {
       items: [defaultFeature, defaultFeature, defaultFeature],
+      sectionLabel: "Features",
     },
+    itemProps: (item) => {
+      return {
+        label: item?.sectionLabel,
+      };
+    }
   },
   fields: [
+    {
+      type: "string",
+      label: "Section Label",
+      name: "sectionLabel",
+    },
+    {
+      type: "string",
+      label: "id",
+      name: "id",
+    },
     {
       type: "object",
       label: "Feature Items",

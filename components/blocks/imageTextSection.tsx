@@ -19,7 +19,7 @@ export const ImageTextSection = ({ data, parentField }) => {
   };
 
   return (
-    <Section color={data.color}>
+    <Section id={data.id} color={data.color}>
       <Container
         size="large"
         className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-8 items-center justify-center"
@@ -72,9 +72,25 @@ export const imageTextSectionSchema: TinaTemplate = {
     defaultItem: {
       headline: "This Big Text is Totally Awesome",
       text: "Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.",
+      sectionLabel: "Image Text Selection",
     },
+    itemProps: (item) => {
+      return {
+        label: item?.sectionLabel,
+      };
+    }
   },
   fields: [
+    {
+      type: "string",
+      label: "Section Label",
+      name: "sectionLabel",
+    },
+    {
+      type: "string",
+      label: "id",
+      name: "id",
+    },
     {
       type: "string",
       label: "Headline",

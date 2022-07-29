@@ -6,7 +6,7 @@ import type { TinaTemplate } from "tinacms";
 
 export const Content = ({ data, parentField = "" }) => {
   return (
-    <Section color={data.color}>
+    <Section color={data.color} id={data.id}>
       <Container
         className={`max-w-4xl prose prose-lg ${
           data.color === "primary" ? `prose-primary` : `dark:prose-dark`
@@ -26,10 +26,26 @@ export const contentBlockSchema: TinaTemplate = {
   ui: {
     previewSrc: "/blocks/content.png",
     defaultItem: {
+      sectionLabel: "Content",
       body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.",
     },
+    itemProps: (item) => {
+      return {
+        label: item?.sectionLabel,
+      };
+    }
   },
   fields: [
+    {
+      type: "string",
+      label: "Section Label",
+      name: "sectionLabel",
+    },
+    {
+      type: "string",
+      label: "id",
+      name: "id",
+    },
     {
       type: "rich-text",
       label: "Body",

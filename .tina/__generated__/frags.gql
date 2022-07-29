@@ -57,6 +57,8 @@ fragment PageParts on Page {
   blocks {
     __typename
     ... on PageBlocksImageTextSection {
+      sectionLabel
+      id
       headline
       text
       image {
@@ -67,6 +69,8 @@ fragment PageParts on Page {
       color
     }
     ... on PageBlocksHero {
+      sectionLabel
+      id
       tagline
       headline
       text
@@ -85,6 +89,8 @@ fragment PageParts on Page {
       color
     }
     ... on PageBlocksFeatures {
+      sectionLabel
+      id
       items {
         __typename
         icon {
@@ -104,10 +110,14 @@ fragment PageParts on Page {
       color
     }
     ... on PageBlocksContent {
+      sectionLabel
+      id
       body
       color
     }
     ... on PageBlocksTwoColumnsContent {
+      sectionLabel
+      id
       headline
       firstColumn {
         __typename
@@ -134,6 +144,8 @@ fragment PageParts on Page {
       color
     }
     ... on PageBlocksTestimonial {
+      sectionLabel
+      id
       quote
       author
       color

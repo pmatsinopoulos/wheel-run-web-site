@@ -20,7 +20,7 @@ export const Hero = ({ data, parentField }) => {
   };
 
   return (
-    <Section color={data.color}>
+    <Section id={data.id} color={data.color}>
       <ContainerWithBackgroundImage
         backgroundimage={data.image}
         size="large"
@@ -78,12 +78,28 @@ export const heroBlockSchema: TinaTemplate = {
   ui: {
     previewSrc: "/blocks/hero.png",
     defaultItem: {
+      sectionLabel: "Hero",
       tagline: "Here's some text above the other text",
       headline: "This Big Text is Totally Awesome",
       text: "Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.",
     },
+    itemProps: (item) => {
+      return {
+        label: item?.sectionLabel,
+      };
+    }
   },
   fields: [
+    {
+      type: "string",
+      label: "Section Label",
+      name: "sectionLabel",
+    },
+    {
+      type: "string",
+      label: "id",
+      name: "id",
+    },
     {
       type: "string",
       label: "Tagline",
