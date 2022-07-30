@@ -20,6 +20,7 @@ fragment GlobalParts on Global {
       style
       name
     }
+    brand
     color
     nav {
       __typename
@@ -34,7 +35,7 @@ fragment GlobalParts on Global {
       __typename
       facebook
       twitter
-      instagram
+      linkedin
       github
     }
   }
@@ -55,7 +56,21 @@ fragment AuthorParts on Author {
 fragment PageParts on Page {
   blocks {
     __typename
+    ... on PageBlocksImageTextSection {
+      sectionLabel
+      id
+      headline
+      text
+      image {
+        __typename
+        src
+        alt
+      }
+      color
+    }
     ... on PageBlocksHero {
+      sectionLabel
+      id
       tagline
       headline
       text
@@ -74,6 +89,8 @@ fragment PageParts on Page {
       color
     }
     ... on PageBlocksFeatures {
+      sectionLabel
+      id
       items {
         __typename
         icon {
@@ -82,16 +99,53 @@ fragment PageParts on Page {
           style
           name
         }
+        image {
+          __typename
+          src
+          alt
+        }
         title
         text
       }
       color
     }
     ... on PageBlocksContent {
+      sectionLabel
+      id
       body
       color
     }
+    ... on PageBlocksTwoColumnsContent {
+      sectionLabel
+      id
+      headline
+      firstColumn {
+        __typename
+        headline
+        text
+        image {
+          __typename
+          src
+          alt
+          hyperlink
+        }
+      }
+      secondColumn {
+        __typename
+        headline
+        text
+        image {
+          __typename
+          src
+          alt
+          hyperlink
+        }
+      }
+      color
+    }
     ... on PageBlocksTestimonial {
+      sectionLabel
+      id
       quote
       author
       color

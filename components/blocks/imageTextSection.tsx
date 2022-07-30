@@ -1,12 +1,11 @@
 import * as React from "react";
-import { Actions } from "../util/actions";
-import { ContainerWithBackgroundImage } from "../util/containerWithBackgroundImage";
+import { Container } from "../util/container";
 import { Section } from "../util/section";
 import { useTheme } from "../layout";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { TinaTemplate } from "tinacms";
 
-export const Hero = ({ data, parentField }) => {
+export const ImageTextSection = ({ data, parentField }) => {
   const theme = useTheme();
   const headlineColorClasses = {
     blue: "from-blue-400 to-blue-600",
@@ -21,67 +20,59 @@ export const Hero = ({ data, parentField }) => {
 
   return (
     <Section id={data.id} color={data.color}>
-      <ContainerWithBackgroundImage
-        backgroundimage={data.image}
+      <Container
         size="large"
         className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-8 items-center justify-center"
       >
+        {data.image && (
+          <div
+            data-tinafield={`${parentField}.image`}
+            className="row-start-1 flex justify-center"
+          >
+            <img
+              className="w-full max-w-xs lg:max-w-none h-auto"
+              alt={data.image.alt}
+              src={data.image.src}
+            />
+          </div>
+        )}
         <div className="row-start-2 lg:row-start-1 lg:col-start-1 lg:col-end-3 text-center lg:text-left">
-          {data.tagline && (
-            <h2
-              data-tinafield={`${parentField}.tagline`}
-              className="relative inline-block px-3 py-1 mb-8 text-md font-bold tracking-wide title-font z-20 text-white"
-            >
-              {data.tagline}
-              <span className="absolute w-full h-full left-0 top-0 rounded-full -z-1 bg-current opacity-7"></span>
-            </h2>
-          )}
           {data.headline && (
-            <h3
+            <h2
               data-tinafield={`${parentField}.headline`}
               className={`w-full relative	mb-10 text-5xl font-extrabold tracking-normal leading-tight title-font`}
             >
               <span
-                className='text-white'
+                className={`${data.color === "primary" ? "prose-primary" : "prose-gray"}`}
               >
                 {data.headline}
               </span>
-            </h3>
+            </h2>
           )}
           {data.text && (
             <div
               data-tinafield={`${parentField}.text`}
-              className={`prose prose-lg mx-auto lg:mx-0 mb-10 ${
-                data.color === "primary" ? `prose-primary` : `dark:prose-dark`
-              }`}
+              className={`prose prose-lg mx-auto lg:mx-0 mb-10 ${data.color === "primary" ? `prose-primary` : `dark:prose-dark`
+                }`}
             >
               <TinaMarkdown content={data.text} />
             </div>
           )}
-          {data.actions && (
-            <Actions
-              parentField={`${parentField}.actions`}
-              className="justify-center lg:justify-start py-2"
-              parentColor={data.color}
-              actions={data.actions}
-            />
-          )}
         </div>
-      </ContainerWithBackgroundImage>
+      </Container>
     </Section>
   );
 };
 
-export const heroBlockSchema: TinaTemplate = {
-  name: "hero",
-  label: "Hero",
+export const imageTextSectionSchema: TinaTemplate = {
+  name: "imageTextSection",
+  label: "Image Text Section",
   ui: {
     previewSrc: "/blocks/hero.png",
     defaultItem: {
-      sectionLabel: "Hero",
-      tagline: "Here's some text above the other text",
       headline: "This Big Text is Totally Awesome",
       text: "Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.",
+      sectionLabel: "Image Text Selection",
     },
     itemProps: (item) => {
       return {
@@ -102,11 +93,6 @@ export const heroBlockSchema: TinaTemplate = {
     },
     {
       type: "string",
-      label: "Tagline",
-      name: "tagline",
-    },
-    {
-      type: "string",
       label: "Headline",
       name: "headline",
     },
@@ -114,46 +100,6 @@ export const heroBlockSchema: TinaTemplate = {
       label: "Text",
       name: "text",
       type: "rich-text",
-    },
-    {
-      label: "Actions",
-      name: "actions",
-      type: "object",
-      list: true,
-      ui: {
-        defaultItem: {
-          label: "Action Label",
-          type: "button",
-          icon: true,
-          link: "/",
-        },
-      },
-      fields: [
-        {
-          label: "Label",
-          name: "label",
-          type: "string",
-        },
-        {
-          label: "Type",
-          name: "type",
-          type: "string",
-          options: [
-            { label: "Button", value: "button" },
-            { label: "Link", value: "link" },
-          ],
-        },
-        {
-          label: "Icon",
-          name: "icon",
-          type: "boolean",
-        },
-        {
-          label: "Link",
-          name: "link",
-          type: "string",
-        },
-      ],
     },
     {
       type: "object",

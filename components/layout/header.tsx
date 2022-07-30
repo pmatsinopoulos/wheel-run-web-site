@@ -61,16 +61,12 @@ export const Header = ({ data }) => {
           <h4 className="select-none text-lg font-bold tracking-tight my-4 transition duration-150 ease-out transform">
             <Link href="/" passHref>
               <a className="flex items-center">
-                <Icon
-                  parentColor={data.color}
-                  data={{
-                    name: data.icon.name,
-                    color: data.icon.color,
-                    style: data.icon.style,
-                  }}
-                  className="inline-block h-auto w-10 mr-1"
-                />{" "}
-                Tina Starter
+              <img src="https://s3.eu-west-1.amazonaws.com/wheelrun.biz-public/app-icon-512x512-300dpi.png" alt="Wheel Run Logo"
+                   className="max-w-[42px] rounded-full"/>
+
+              <span id="brand-word" className="inline-block ml-2.5 leading-[3rem] h-[42px]">
+                { data.brand }
+              </span>
               </a>
             </Link>
           </h4>

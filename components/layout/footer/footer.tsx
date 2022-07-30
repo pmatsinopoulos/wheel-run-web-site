@@ -1,11 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { FaFacebookF, FaGithub, FaTwitter } from "react-icons/fa";
-import { AiFillInstagram } from "react-icons/ai";
+import { AiFillLinkedin } from "react-icons/ai";
 import { Container } from "../../util/container";
 import { RawRenderer } from "./rawRenderer";
 import { useTheme } from "..";
-import { Icon } from "../../util/icon";
 
 export const Footer = ({ data, icon, rawData }) => {
   const theme = useTheme();
@@ -48,15 +47,8 @@ export const Footer = ({ data, icon, rawData }) => {
         <div className="flex justify-between items-center gap-6 flex-wrap">
           <Link href="/" passHref>
             <a className="group mx-2 flex items-center font-bold tracking-tight text-gray-400 dark:text-gray-300 opacity-50 hover:opacity-100 transition duration-150 ease-out whitespace-nowrap">
-              <Icon
-                parentColor={data.color}
-                data={{
-                  name: icon.name,
-                  color: data.color === "primary" ? "primary" : icon.color,
-                  style: icon.style,
-                }}
-                className="inline-block h-10 w-auto group-hover:text-orange-500"
-              />
+              <img src="https://s3.eu-west-1.amazonaws.com/wheelrun.biz-public/app-icon-512x512-300dpi.png" alt="Wheel Run Logo"
+                   className="max-w-[42px] rounded-full"/>
             </a>
           </Link>
           <div className="flex gap-4">
@@ -90,13 +82,13 @@ export const Footer = ({ data, icon, rawData }) => {
                 />
               </a>
             )}
-            {data.social && data.social.instagram && (
+            {data.social && data.social.linkedin && (
               <a
                 className="inline-block opacity-80 hover:opacity-100 transition ease-out duration-150"
-                href={data.social.instagram}
+                href={data.social.linkedin}
                 target="_blank"
               >
-                <AiFillInstagram
+                <AiFillLinkedin
                   className={`${socialIconClasses} ${
                     socialIconColorClasses[
                       data.color === "primary" ? "primary" : theme.color

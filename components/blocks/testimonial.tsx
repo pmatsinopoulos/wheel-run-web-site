@@ -5,7 +5,7 @@ import type { TinaTemplate } from "tinacms";
 
 export const Testimonial = ({ data, parentField = "" }) => {
   return (
-    <Section color={data.color}>
+    <Section id={data.id} color={data.color}>
       <Container size="large">
         <blockquote>
           <div
@@ -69,9 +69,25 @@ export const testimonialBlockSchema: TinaTemplate = {
         "There are only two hard things in Computer Science: cache invalidation and naming things.",
       author: "Phil Karlton",
       color: "primary",
+      sectionLabel: "Testimonial",
     },
+    itemProps: (item) => {
+      return {
+        label: item?.sectionLabel,
+      };
+    }
   },
   fields: [
+    {
+      type: "string",
+      label: "Section Label",
+      name: "sectionLabel",
+    },
+    {
+      type: "string",
+      label: "id",
+      name: "id",
+    },
     {
       type: "string",
       ui: {

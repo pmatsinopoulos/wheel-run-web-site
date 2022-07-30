@@ -1,7 +1,9 @@
 import { defineSchema, defineConfig } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
+import { twoColumnsContentBlockSchema } from "../components/blocks/twoColumnsContent";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
+import { imageTextSectionSchema } from "../components/blocks/imageTextSection";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
 
@@ -9,15 +11,15 @@ const schema = defineSchema({
   config: {
     media: {
       // If you wanted cloudinary do this
-      // loadCustomStore: async () => {
-      //   const pack = await import("next-tinacms-cloudinary");
-      //   return pack.TinaCloudCloudinaryMediaStore;
-      // },
-      // this is the config for the tina cloud media store
-      tina: {
-        publicFolder: "public",
-        mediaRoot: "uploads",
+      loadCustomStore: async () => {
+        const pack = await import("next-tinacms-cloudinary");
+        return pack.TinaCloudCloudinaryMediaStore;
       },
+      // this is the config for the tina cloud media store
+      // tina: {
+      //   publicFolder: "public",
+      //   mediaRoot: "uploads",
+      // },
     },
   },
   collections: [
@@ -31,6 +33,8 @@ const schema = defineSchema({
           type: "string",
           label: "Title",
           name: "title",
+          isTitle: true,
+          required: true,
         },
         {
           type: "image",
@@ -142,6 +146,12 @@ const schema = defineSchema({
             iconSchema,
             {
               type: "string",
+              label: "Brand",
+              name: "brand",
+              options: ["Wheel Run"],
+            },
+            {
+              type: "string",
               label: "Color",
               name: "color",
               options: [
@@ -209,8 +219,8 @@ const schema = defineSchema({
                 },
                 {
                   type: "string",
-                  label: "Instagram",
-                  name: "instagram",
+                  label: "LinkedIn",
+                  name: "linkedin",
                 },
                 {
                   type: "string",
@@ -354,9 +364,11 @@ const schema = defineSchema({
             visualSelector: true,
           },
           templates: [
+            imageTextSectionSchema,
             heroBlockSchema,
             featureBlockSchema,
             contentBlockSchema,
+            twoColumnsContentBlockSchema,
             testimonialBlockSchema,
           ],
         },

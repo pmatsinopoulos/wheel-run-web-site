@@ -3,8 +3,9 @@
     "icon": {
       "color": "orange",
       "style": "float",
-      "name": "tina"
+      "name": "tube"
     },
+    "brand": "Wheel Run",
     "color": "default",
     "nav": [
       {
@@ -24,9 +25,10 @@
   "footer": {
     "color": "default",
     "social": {
-      "facebook": "/",
-      "twitter": "/",
-      "instagram": "/"
+      "facebook": "https://www.facebook.com/wheelrun.biz",
+      "twitter": "https://twitter.com/wheelrun",
+      "linkedin": "https://www.linkedin.com/company/wheelrun/",
+      "github": "https://github.com/wheelrun"
     }
   },
   "theme": {

@@ -86,7 +86,7 @@ union DocumentNode = Post | Global | Author | Page
 union PostAuthor = Author
 
 type Post implements Node & Document {
-  title: String
+  title: String!
   heroImg: String
   excerpt: JSON
   author: PostAuthor
@@ -121,6 +121,7 @@ type GlobalHeaderNav {
 
 type GlobalHeader {
   icon: GlobalHeaderIcon
+  brand: String
   color: String
   nav: [GlobalHeaderNav]
 }
@@ -128,7 +129,7 @@ type GlobalHeader {
 type GlobalFooterSocial {
   facebook: String
   twitter: String
-  instagram: String
+  linkedin: String
   github: String
 }
 
@@ -183,6 +184,20 @@ type AuthorConnection implements Connection {
   edges: [AuthorConnectionEdges]
 }
 
+type PageBlocksImageTextSectionImage {
+  src: String
+  alt: String
+}
+
+type PageBlocksImageTextSection {
+  sectionLabel: String
+  id: String
+  headline: String
+  text: JSON
+  image: PageBlocksImageTextSectionImage
+  color: String
+}
+
 type PageBlocksHeroActions {
   label: String
   type: String
@@ -196,6 +211,8 @@ type PageBlocksHeroImage {
 }
 
 type PageBlocksHero {
+  sectionLabel: String
+  id: String
   tagline: String
   headline: String
   text: JSON
@@ -210,29 +227,74 @@ type PageBlocksFeaturesItemsIcon {
   name: String
 }
 
+type PageBlocksFeaturesItemsImage {
+  src: String
+  alt: String
+}
+
 type PageBlocksFeaturesItems {
   icon: PageBlocksFeaturesItemsIcon
+  image: PageBlocksFeaturesItemsImage
   title: String
   text: String
 }
 
 type PageBlocksFeatures {
+  sectionLabel: String
+  id: String
   items: [PageBlocksFeaturesItems]
   color: String
 }
 
 type PageBlocksContent {
+  sectionLabel: String
+  id: String
   body: JSON
   color: String
 }
 
+type PageBlocksTwoColumnsContentFirstColumnImage {
+  src: String
+  alt: String
+  hyperlink: String
+}
+
+type PageBlocksTwoColumnsContentFirstColumn {
+  headline: String
+  text: String
+  image: PageBlocksTwoColumnsContentFirstColumnImage
+}
+
+type PageBlocksTwoColumnsContentSecondColumnImage {
+  src: String
+  alt: String
+  hyperlink: String
+}
+
+type PageBlocksTwoColumnsContentSecondColumn {
+  headline: String
+  text: String
+  image: PageBlocksTwoColumnsContentSecondColumnImage
+}
+
+type PageBlocksTwoColumnsContent {
+  sectionLabel: String
+  id: String
+  headline: String
+  firstColumn: PageBlocksTwoColumnsContentFirstColumn
+  secondColumn: PageBlocksTwoColumnsContentSecondColumn
+  color: String
+}
+
 type PageBlocksTestimonial {
+  sectionLabel: String
+  id: String
   quote: String
   author: String
   color: String
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksFeatures | PageBlocksContent | PageBlocksTestimonial
+union PageBlocks = PageBlocksImageTextSection | PageBlocksHero | PageBlocksFeatures | PageBlocksContent | PageBlocksTwoColumnsContent | PageBlocksTestimonial
 
 type Page implements Node & Document {
   blocks: [PageBlocks]
@@ -296,6 +358,7 @@ input GlobalHeaderNavMutation {
 
 input GlobalHeaderMutation {
   icon: GlobalHeaderIconMutation
+  brand: String
   color: String
   nav: [GlobalHeaderNavMutation]
 }
@@ -303,7 +366,7 @@ input GlobalHeaderMutation {
 input GlobalFooterSocialMutation {
   facebook: String
   twitter: String
-  instagram: String
+  linkedin: String
   github: String
 }
 
@@ -330,6 +393,20 @@ input AuthorMutation {
   avatar: String
 }
 
+input PageBlocksImageTextSectionImageMutation {
+  src: String
+  alt: String
+}
+
+input PageBlocksImageTextSectionMutation {
+  sectionLabel: String
+  id: String
+  headline: String
+  text: JSON
+  image: PageBlocksImageTextSectionImageMutation
+  color: String
+}
+
 input PageBlocksHeroActionsMutation {
   label: String
   type: String
@@ -343,6 +420,8 @@ input PageBlocksHeroImageMutation {
 }
 
 input PageBlocksHeroMutation {
+  sectionLabel: String
+  id: String
   tagline: String
   headline: String
   text: JSON
@@ -357,32 +436,79 @@ input PageBlocksFeaturesItemsIconMutation {
   name: String
 }
 
+input PageBlocksFeaturesItemsImageMutation {
+  src: String
+  alt: String
+}
+
 input PageBlocksFeaturesItemsMutation {
   icon: PageBlocksFeaturesItemsIconMutation
+  image: PageBlocksFeaturesItemsImageMutation
   title: String
   text: String
 }
 
 input PageBlocksFeaturesMutation {
+  sectionLabel: String
+  id: String
   items: [PageBlocksFeaturesItemsMutation]
   color: String
 }
 
 input PageBlocksContentMutation {
+  sectionLabel: String
+  id: String
   body: JSON
   color: String
 }
 
+input PageBlocksTwoColumnsContentFirstColumnImageMutation {
+  src: String
+  alt: String
+  hyperlink: String
+}
+
+input PageBlocksTwoColumnsContentFirstColumnMutation {
+  headline: String
+  text: String
+  image: PageBlocksTwoColumnsContentFirstColumnImageMutation
+}
+
+input PageBlocksTwoColumnsContentSecondColumnImageMutation {
+  src: String
+  alt: String
+  hyperlink: String
+}
+
+input PageBlocksTwoColumnsContentSecondColumnMutation {
+  headline: String
+  text: String
+  image: PageBlocksTwoColumnsContentSecondColumnImageMutation
+}
+
+input PageBlocksTwoColumnsContentMutation {
+  sectionLabel: String
+  id: String
+  headline: String
+  firstColumn: PageBlocksTwoColumnsContentFirstColumnMutation
+  secondColumn: PageBlocksTwoColumnsContentSecondColumnMutation
+  color: String
+}
+
 input PageBlocksTestimonialMutation {
+  sectionLabel: String
+  id: String
   quote: String
   author: String
   color: String
 }
 
 input PageBlocksMutation {
+  imageTextSection: PageBlocksImageTextSectionMutation
   hero: PageBlocksHeroMutation
   features: PageBlocksFeaturesMutation
   content: PageBlocksContentMutation
+  twoColumnsContent: PageBlocksTwoColumnsContentMutation
   testimonial: PageBlocksTestimonialMutation
 }
 
