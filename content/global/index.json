@@ -29,7 +29,8 @@
       "twitter": "https://twitter.com/wheelrun",
       "linkedin": "https://www.linkedin.com/company/wheelrun/",
       "github": "https://github.com/wheelrun"
-    }
+    },
+    "viewRawDataButton": false
   },
   "theme": {
     "color": "blue",

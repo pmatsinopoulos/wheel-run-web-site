@@ -38,6 +38,7 @@ fragment GlobalParts on Global {
       linkedin
       github
     }
+    viewRawDataButton
   }
   theme {
     __typename

@@ -229,6 +229,11 @@ const schema = defineSchema({
                 },
               ],
             },
+            {
+              type: "boolean",
+              label: "View Raw Data Button",
+              name: "viewRawDataButton",
+            },
           ],
         },
         {

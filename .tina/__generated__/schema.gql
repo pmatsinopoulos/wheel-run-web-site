@@ -136,6 +136,7 @@ type GlobalFooterSocial {
 type GlobalFooter {
   color: String
   social: GlobalFooterSocial
+  viewRawDataButton: Boolean
 }
 
 type GlobalTheme {
@@ -373,6 +374,7 @@ input GlobalFooterSocialMutation {
 input GlobalFooterMutation {
   color: String
   social: GlobalFooterSocialMutation
+  viewRawDataButton: Boolean
 }
 
 input GlobalThemeMutation {
