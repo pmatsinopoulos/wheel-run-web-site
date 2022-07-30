@@ -129,7 +129,7 @@ type GlobalHeader {
 type GlobalFooterSocial {
   facebook: String
   twitter: String
-  instagram: String
+  linkedin: String
   github: String
 }
 
@@ -366,7 +366,7 @@ input GlobalHeaderMutation {
 input GlobalFooterSocialMutation {
   facebook: String
   twitter: String
-  instagram: String
+  linkedin: String
   github: String
 }
 

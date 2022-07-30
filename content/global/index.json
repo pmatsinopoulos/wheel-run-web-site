@@ -25,9 +25,9 @@
   "footer": {
     "color": "default",
     "social": {
-      "facebook": "/",
+      "facebook": "https://www.facebook.com/wheelrun.biz",
       "twitter": "/",
-      "instagram": "/"
+      "linkedin": "https://www.linkedin.com/company/wheelrun/"
     }
   },
   "theme": {

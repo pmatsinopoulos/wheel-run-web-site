@@ -219,8 +219,8 @@ const schema = defineSchema({
                 },
                 {
                   type: "string",
-                  label: "Instagram",
-                  name: "instagram",
+                  label: "LinkedIn",
+                  name: "linkedin",
                 },
                 {
                   type: "string",

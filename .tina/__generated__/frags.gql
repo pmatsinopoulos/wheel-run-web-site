@@ -35,7 +35,7 @@ fragment GlobalParts on Global {
       __typename
       facebook
       twitter
-      instagram
+      linkedin
       github
     }
   }
