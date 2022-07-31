@@ -1,4 +1,5 @@
 ---
+title: Home
 blocks:
   - sectionLabel: 'Hero: Manage Your Cars and Motorcycles'
     tagline: Any Vehicle
@@ -260,5 +261,12 @@ blocks:
         hyperlink: 'https://apps.apple.com/us/app/wheel-run/id1498316635'
     color: tint
     _template: twoColumnsContent
+meta:
+  description: >-
+    Mobile app to manage your cars and motorcycles, from services to unscheduled
+    services and their costs to gas consumption and all about maintenance
+  og:
+    image: >-
+      https://res.cloudinary.com/oneth0usandwords/image/upload/v1658642896/wheel-run/production/website/shelby_lyvice.jpg
 ---
 

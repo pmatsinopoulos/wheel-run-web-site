@@ -1,4 +1,5 @@
-import { defineSchema, defineConfig } from "tinacms";
+import React from "react";
+import { defineSchema, defineConfig, wrapFieldsWithMeta } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { twoColumnsContentBlockSchema } from "../components/blocks/twoColumnsContent";
 import { featureBlockSchema } from "../components/blocks/features";
@@ -6,6 +7,71 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { imageTextSectionSchema } from "../components/blocks/imageTextSection";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
+
+const metaSchema = {
+  type: "object",
+  label: "meta",
+  name: "meta",
+  fields: [
+    {
+      type: "string",
+      label: "description",
+      name: "description",
+    },
+    {
+      type: "object",
+      label: "og",
+      name: "og",
+      fields: [
+        {
+          label: "type",
+          name: "type",
+          type: "string",
+        },
+        {
+          label: "image",
+          name: "image",
+          type: "image",
+        },
+        {
+          type: "object",
+          label: "namespace",
+          name: "namespace",
+          fields: [
+            {
+              type: "string",
+              name: "value",
+              label: "value",
+            },
+            {
+              type: "string",
+              name: "uri",
+              label: "uri",
+            }
+          ]
+        },
+        {
+          label: "Custom Meta",
+          name: "customMeta",
+          type: "object",
+          list: true,
+          fields: [
+            {
+              type: "string",
+              name: "property",
+              label: "Property",
+            },
+            {
+              type: "string",
+              name: "content",
+              label: "Content"
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 
 const schema = defineSchema({
   config: {
@@ -60,6 +126,17 @@ const schema = defineSchema({
             dateFormat: "MMMM DD YYYY",
             timeFormat: "hh:mm A",
           },
+        },
+        {
+          type: "string",
+          label: "Section",
+          name: "section",
+        },
+        {
+          type: "string",
+          label: "Tags",
+          name: "tags",
+          list: true
         },
         {
           type: "rich-text",
@@ -130,6 +207,7 @@ const schema = defineSchema({
           ],
           isBody: true,
         },
+        metaSchema,
       ],
     },
     {
@@ -138,6 +216,40 @@ const schema = defineSchema({
       path: "content/global",
       format: "json",
       fields: [
+        {
+          type: "object",
+          label: "head",
+          name: "head",
+          ui: {
+            parse: () => '',
+            component: wrapFieldsWithMeta(({ field, input, meta }) => {
+              return (
+                <div>
+                  <strong>head</strong> fields take their values dynamically
+                </div>
+              )
+            }),
+          },
+          fields: [
+            {
+              type: "string",
+              label: "title",
+              name: "title",
+            },
+            {
+              type: "object",
+              label: "meta",
+              name: "meta",
+              fields: [
+                {
+                  type: "string",
+                  label: "description",
+                  name: "description",
+                },
+              ]
+            },
+          ]
+        },
         {
           type: "object",
           label: "Header",
@@ -361,6 +473,11 @@ const schema = defineSchema({
       path: "content/pages",
       fields: [
         {
+          type: "string",
+          label: "Title",
+          name: "title",
+        },
+        {
           type: "object",
           list: true,
           name: "blocks",
@@ -377,6 +494,7 @@ const schema = defineSchema({
             testimonialBlockSchema,
           ],
         },
+        metaSchema
       ],
     },
   ],

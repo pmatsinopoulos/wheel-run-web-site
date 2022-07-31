@@ -85,13 +85,38 @@ union DocumentNode = Post | Global | Author | Page
 
 union PostAuthor = Author
 
+type PostMetaOgNamespace {
+  value: String
+  uri: String
+}
+
+type PostMetaOgCustomMeta {
+  property: String
+  content: String
+}
+
+type PostMetaOg {
+  type: String
+  image: String
+  namespace: PostMetaOgNamespace
+  customMeta: [PostMetaOgCustomMeta]
+}
+
+type PostMeta {
+  description: String
+  og: PostMetaOg
+}
+
 type Post implements Node & Document {
   title: String!
   heroImg: String
   excerpt: JSON
   author: PostAuthor
   date: String
+  section: String
+  tags: [String]
   _body: JSON
+  meta: PostMeta
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -106,6 +131,15 @@ type PostConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
   edges: [PostConnectionEdges]
+}
+
+type GlobalHeadMeta {
+  description: String
+}
+
+type GlobalHead {
+  title: String
+  meta: GlobalHeadMeta
 }
 
 type GlobalHeaderIcon {
@@ -147,6 +181,7 @@ type GlobalTheme {
 }
 
 type Global implements Node & Document {
+  head: GlobalHead
   header: GlobalHeader
   footer: GlobalFooter
   theme: GlobalTheme
@@ -297,8 +332,32 @@ type PageBlocksTestimonial {
 
 union PageBlocks = PageBlocksImageTextSection | PageBlocksHero | PageBlocksFeatures | PageBlocksContent | PageBlocksTwoColumnsContent | PageBlocksTestimonial
 
+type PageMetaOgNamespace {
+  value: String
+  uri: String
+}
+
+type PageMetaOgCustomMeta {
+  property: String
+  content: String
+}
+
+type PageMetaOg {
+  type: String
+  image: String
+  namespace: PageMetaOgNamespace
+  customMeta: [PageMetaOgCustomMeta]
+}
+
+type PageMeta {
+  description: String
+  og: PageMetaOg
+}
+
 type Page implements Node & Document {
+  title: String
   blocks: [PageBlocks]
+  meta: PageMeta
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -337,13 +396,47 @@ input DocumentMutation {
   page: PageMutation
 }
 
+input PostMetaOgNamespaceMutation {
+  value: String
+  uri: String
+}
+
+input PostMetaOgCustomMetaMutation {
+  property: String
+  content: String
+}
+
+input PostMetaOgMutation {
+  type: String
+  image: String
+  namespace: PostMetaOgNamespaceMutation
+  customMeta: [PostMetaOgCustomMetaMutation]
+}
+
+input PostMetaMutation {
+  description: String
+  og: PostMetaOgMutation
+}
+
 input PostMutation {
   title: String
   heroImg: String
   excerpt: JSON
   author: String
   date: String
+  section: String
+  tags: [String]
   _body: JSON
+  meta: PostMetaMutation
+}
+
+input GlobalHeadMetaMutation {
+  description: String
+}
+
+input GlobalHeadMutation {
+  title: String
+  meta: GlobalHeadMetaMutation
 }
 
 input GlobalHeaderIconMutation {
@@ -385,6 +478,7 @@ input GlobalThemeMutation {
 }
 
 input GlobalMutation {
+  head: GlobalHeadMutation
   header: GlobalHeaderMutation
   footer: GlobalFooterMutation
   theme: GlobalThemeMutation
@@ -514,8 +608,32 @@ input PageBlocksMutation {
   testimonial: PageBlocksTestimonialMutation
 }
 
+input PageMetaOgNamespaceMutation {
+  value: String
+  uri: String
+}
+
+input PageMetaOgCustomMetaMutation {
+  property: String
+  content: String
+}
+
+input PageMetaOgMutation {
+  type: String
+  image: String
+  namespace: PageMetaOgNamespaceMutation
+  customMeta: [PageMetaOgCustomMetaMutation]
+}
+
+input PageMetaMutation {
+  description: String
+  og: PageMetaOgMutation
+}
+
 input PageMutation {
+  title: String
   blocks: [PageBlocksMutation]
+  meta: PageMetaMutation
 }
 
 schema {

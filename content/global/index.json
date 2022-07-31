@@ -1,4 +1,23 @@
 {
+  "head": {
+    "title": "",
+    "meta": {
+      "description": "",
+      "og": {
+        "type": "",
+        "namespace": {
+          "value": "",
+          "uri": ""
+        },
+        "customMeta": [
+          {
+            "property": "foo-prop",
+            "content": "foo-content"
+          }
+        ]
+      }
+    }
+  },
   "header": {
     "icon": {
       "color": "orange",

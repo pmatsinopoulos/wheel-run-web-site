@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { Container } from "../util/container";
 import { useTheme } from ".";
-import { Icon } from "../util/icon";
 
 export const Header = ({ data }) => {
   const theme = useTheme();
