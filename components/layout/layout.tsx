@@ -21,6 +21,7 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
   const customOgMeta = data.head.meta.og.customMeta
   const ogImage = data.head.meta.og.image
   const ogUrl = `https://www.wheelrun.biz${router.asPath}`
+  const ogSiteName = data.header.brand
 
   return (
     <>
@@ -36,6 +37,7 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
         <meta property="og:description" content={headDescription} />
         <meta property="og:image" content={ogImage} />
         <meta property="og:url" content={ogUrl} />
+        <meta property="og:site_name" content={ogSiteName} />
         {customOgMeta && (
           customOgMeta.map((customOgMetaItem, index) => {
             return (
