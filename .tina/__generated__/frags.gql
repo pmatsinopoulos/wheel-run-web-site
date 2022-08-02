@@ -8,10 +8,39 @@ fragment PostParts on Post {
     }
   }
   date
+  section
+  tags
   _body
+  meta {
+    __typename
+    description
+    og {
+      __typename
+      type
+      image
+      namespace {
+        __typename
+        value
+        uri
+      }
+      customMeta {
+        __typename
+        property
+        content
+      }
+    }
+  }
 }
 
 fragment GlobalParts on Global {
+  head {
+    __typename
+    title
+    meta {
+      __typename
+      description
+    }
+  }
   header {
     __typename
     icon {
@@ -38,6 +67,7 @@ fragment GlobalParts on Global {
       linkedin
       github
     }
+    viewRawDataButton
   }
   theme {
     __typename
@@ -54,6 +84,7 @@ fragment AuthorParts on Author {
 }
 
 fragment PageParts on Page {
+  title
   blocks {
     __typename
     ... on PageBlocksImageTextSection {
@@ -86,6 +117,10 @@ fragment PageParts on Page {
         src
         alt
       }
+      color
+    }
+    ... on PageBlocksContactUs {
+      id
       color
     }
     ... on PageBlocksFeatures {
@@ -149,6 +184,25 @@ fragment PageParts on Page {
       quote
       author
       color
+    }
+  }
+  meta {
+    __typename
+    description
+    og {
+      __typename
+      type
+      image
+      namespace {
+        __typename
+        value
+        uri
+      }
+      customMeta {
+        __typename
+        property
+        content
+      }
     }
   }
 }

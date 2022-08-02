@@ -11,8 +11,23 @@ export default function HomePage(
     variables: props.variables,
     data: props.data,
   });
+
+  const layoutData = {
+    ...data.global,
+    head: {
+      title: data.page.title,
+      meta: {
+        ...data.page.meta,
+        og: {
+          ...data.page.meta.og,
+          type: 'website',
+        },
+      },
+    },
+  };
+
   return (
-    <Layout rawData={data} data={data.global as any}>
+    <Layout rawData={data} data={layoutData as any}>
       <Blocks {...data.page} />
     </Layout>
   );

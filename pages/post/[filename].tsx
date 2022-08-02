@@ -13,8 +13,52 @@ export default function BlogPostPage(
     data: props.data,
   });
   if (data && data.post) {
+    const layoutData = {
+      ...data.global,
+      head: {
+        title: data.post.title,
+        meta: {
+          ...data.post.meta,
+          og: {
+            ...data.post.meta.og,
+            type: 'article',
+            image: data.post.heroImg,
+            namespace: {
+              value: 'article',
+              uri: 'https://ogp.me/ns/article',
+            },
+            customMeta: [
+              {
+                property: "article:published_time",
+                content: data.post.date,
+              },
+              {
+                property: "article:modified_time",
+                content: data.post.date,
+              },
+              {
+                property: "article:author",
+                content: data.post.author.name,
+              },
+              {
+                property: "article:section",
+                content: data.post.section,
+              },
+              ...data.post.tags.map((tag) => {
+                return (
+                  {
+                    property: "article:tag",
+                    content: tag
+                  }
+                )
+              })
+            ],
+          },
+        },
+      },
+    };
     return (
-      <Layout rawData={data} data={data.global as any}>
+      <Layout rawData={data} data={layoutData as any}>
         <Post {...data.post} />;
       </Layout>
     );

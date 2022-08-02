@@ -1,8 +1,10 @@
 import React from "react";
-import { Container } from "../util/container";
-import { Section } from "../util/section";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { TinaTemplate } from "tinacms";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { Section } from "../util/section";
+import { Container } from "../util/container";
+import components from "../util/components";
+import richTextTemplatesSchemas from "../schemas/richTextTemplatesSchemas";
 
 export const Content = ({ data, parentField = "" }) => {
   return (
@@ -10,11 +12,11 @@ export const Content = ({ data, parentField = "" }) => {
       <Container
         className={`max-w-4xl prose prose-lg ${
           data.color === "primary" ? `prose-primary` : `dark:prose-dark`
-        }`}
+        } pb-4`}
         data-tinafield={`${parentField}.body`}
         size="large"
       >
-        <TinaMarkdown content={data.body} />
+        <TinaMarkdown components={components} content={data.body} />
       </Container>
     </Section>
   );
@@ -50,6 +52,8 @@ export const contentBlockSchema: TinaTemplate = {
       type: "rich-text",
       label: "Body",
       name: "body",
+      isBody: true,
+      templates: richTextTemplatesSchemas,
     },
     {
       type: "string",
@@ -60,6 +64,6 @@ export const contentBlockSchema: TinaTemplate = {
         { label: "Tint", value: "tint" },
         { label: "Primary", value: "primary" },
       ],
-    },
+    }
   ],
 };

@@ -1,11 +1,79 @@
-import { defineSchema, defineConfig } from "tinacms";
+import React from "react";
+import { defineSchema, defineConfig, wrapFieldsWithMeta, TinaTemplate, TinaField } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
+import { contactUsBlockSchema } from "../components/blocks/contactUs";
 import { twoColumnsContentBlockSchema } from "../components/blocks/twoColumnsContent";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
 import { imageTextSectionSchema } from "../components/blocks/imageTextSection";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
+import richTextTemplatesSchemas from "../components/schemas/richTextTemplatesSchemas";
+
+const metaSchema: TinaField = {
+  type: "object",
+  label: "meta",
+  name: "meta",
+  fields: [
+    {
+      type: "string",
+      label: "description",
+      name: "description",
+    },
+    {
+      type: "object",
+      label: "og",
+      name: "og",
+      fields: [
+        {
+          label: "type",
+          name: "type",
+          type: "string",
+        },
+        {
+          label: "image",
+          name: "image",
+          type: "image",
+        },
+        {
+          type: "object",
+          label: "namespace",
+          name: "namespace",
+          fields: [
+            {
+              type: "string",
+              name: "value",
+              label: "value",
+            },
+            {
+              type: "string",
+              name: "uri",
+              label: "uri",
+            }
+          ]
+        },
+        {
+          label: "Custom Meta",
+          name: "customMeta",
+          type: "object",
+          list: true,
+          fields: [
+            {
+              type: "string",
+              name: "property",
+              label: "Property",
+            },
+            {
+              type: "string",
+              name: "content",
+              label: "Content"
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 
 const schema = defineSchema({
   config: {
@@ -62,74 +130,24 @@ const schema = defineSchema({
           },
         },
         {
+          type: "string",
+          label: "Section",
+          name: "section",
+        },
+        {
+          type: "string",
+          label: "Tags",
+          name: "tags",
+          list: true
+        },
+        {
           type: "rich-text",
           label: "Body",
           name: "_body",
-          templates: [
-            {
-              name: "DateTime",
-              label: "Date & Time",
-              inline: true,
-              fields: [
-                {
-                  name: "format",
-                  label: "Format",
-                  type: "string",
-                  options: ["utc", "iso", "local"],
-                },
-              ],
-            },
-            {
-              name: "BlockQuote",
-              label: "Block Quote",
-              fields: [
-                {
-                  name: "children",
-                  label: "Quote",
-                  type: "rich-text",
-                },
-                {
-                  name: "authorName",
-                  label: "Author",
-                  type: "string",
-                },
-              ],
-            },
-            {
-              name: "NewsletterSignup",
-              label: "Newsletter Sign Up",
-              fields: [
-                {
-                  name: "children",
-                  label: "CTA",
-                  type: "rich-text",
-                },
-                {
-                  name: "placeholder",
-                  label: "Placeholder",
-                  type: "string",
-                },
-                {
-                  name: "buttonText",
-                  label: "Button Text",
-                  type: "string",
-                },
-                {
-                  name: "disclaimer",
-                  label: "Disclaimer",
-                  type: "rich-text",
-                },
-              ],
-              ui: {
-                defaultItem: {
-                  placeholder: "Enter your email",
-                  buttonText: "Notify Me",
-                },
-              },
-            },
-          ],
+          templates: richTextTemplatesSchemas,
           isBody: true,
         },
+        metaSchema,
       ],
     },
     {
@@ -138,6 +156,40 @@ const schema = defineSchema({
       path: "content/global",
       format: "json",
       fields: [
+        {
+          type: "object",
+          label: "head",
+          name: "head",
+          ui: {
+            parse: () => '',
+            component: wrapFieldsWithMeta(({ field, input, meta }) => {
+              return (
+                <div>
+                  <strong>head</strong> fields take their values dynamically
+                </div>
+              )
+            }),
+          },
+          fields: [
+            {
+              type: "string",
+              label: "title",
+              name: "title",
+            },
+            {
+              type: "object",
+              label: "meta",
+              name: "meta",
+              fields: [
+                {
+                  type: "string",
+                  label: "description",
+                  name: "description",
+                },
+              ]
+            },
+          ]
+        },
         {
           type: "object",
           label: "Header",
@@ -228,6 +280,11 @@ const schema = defineSchema({
                   name: "github",
                 },
               ],
+            },
+            {
+              type: "boolean",
+              label: "View Raw Data Button",
+              name: "viewRawDataButton",
             },
           ],
         },
@@ -356,6 +413,11 @@ const schema = defineSchema({
       path: "content/pages",
       fields: [
         {
+          type: "string",
+          label: "Title",
+          name: "title",
+        },
+        {
           type: "object",
           list: true,
           name: "blocks",
@@ -366,12 +428,14 @@ const schema = defineSchema({
           templates: [
             imageTextSectionSchema,
             heroBlockSchema,
+            contactUsBlockSchema,
             featureBlockSchema,
             contentBlockSchema,
             twoColumnsContentBlockSchema,
             testimonialBlockSchema,
           ],
         },
+        metaSchema
       ],
     },
   ],
@@ -404,8 +468,8 @@ export const tinaConfig = defineConfig({
           if (document._sys.filename === "home") {
             return `/`;
           }
-          if (document._sys.filename === "about") {
-            return `/about`;
+          if (document._sys.filename === "contact") {
+            return `/contact`;
           }
           return undefined;
         }

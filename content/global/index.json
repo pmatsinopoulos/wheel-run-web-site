@@ -1,4 +1,24 @@
 {
+  "head": {
+    "title": "",
+    "meta": {
+      "description": "global",
+      "og": {
+        "type": "",
+        "namespace": {
+          "value": "",
+          "uri": ""
+        },
+        "image": "",
+        "customMeta": [
+          {
+            "property": "foo-prop",
+            "content": "foo-content"
+          }
+        ]
+      }
+    }
+  },
   "header": {
     "icon": {
       "color": "orange",
@@ -13,8 +33,8 @@
         "label": "Home"
       },
       {
-        "href": "about",
-        "label": "About"
+        "href": "contact",
+        "label": "Contact"
       },
       {
         "href": "posts",
@@ -29,7 +49,8 @@
       "twitter": "https://twitter.com/wheelrun",
       "linkedin": "https://www.linkedin.com/company/wheelrun/",
       "github": "https://github.com/wheelrun"
-    }
+    },
+    "viewRawDataButton": false
   },
   "theme": {
     "color": "blue",
