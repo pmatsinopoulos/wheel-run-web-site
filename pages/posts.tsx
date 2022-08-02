@@ -3,6 +3,7 @@ import { Section } from "../components/util/section";
 import { Posts } from "../components/posts";
 import { ExperimentalGetTinaClient } from "../.tina/__generated__/types";
 import { Layout } from "../components/layout";
+import { Hero } from "../components/blocks/hero";
 
 export default function HomePage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -26,10 +27,26 @@ export default function HomePage(
     },
   };
 
+  const data = {
+    id: 'blog-post-hero-section',
+    color: "primary",
+    image:  {
+      src: 'https://res.cloudinary.com/oneth0usandwords/image/upload/v1659474047/wheel-run/production/website/automobile-1-beatle_gkoetg.jpg',
+      alt: 'Old Beatle Car with Funcy Colors',
+    },
+    tagline: "Knowledge Base",
+    headline: "BLOG POSTS",
+  };
+
+  const parentField = {
+
+  };
+
   return (
     <Layout data={layoutData as any}>
       <Section className="flex-1">
         <Container size="large">
+          <Hero data={data} parentField={parentField} />
           <Posts data={posts} />
         </Container>
       </Section>
