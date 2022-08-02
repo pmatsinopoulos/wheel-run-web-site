@@ -1,5 +1,5 @@
 import React from "react";
-import { defineSchema, defineConfig, wrapFieldsWithMeta } from "tinacms";
+import { defineSchema, defineConfig, wrapFieldsWithMeta, TinaTemplate, TinaField } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { twoColumnsContentBlockSchema } from "../components/blocks/twoColumnsContent";
 import { featureBlockSchema } from "../components/blocks/features";
@@ -7,8 +7,11 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { imageTextSectionSchema } from "../components/blocks/imageTextSection";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
+import dateTimeTemplateSchema from "../components/schemas/dateTimeTemplateSchema";
+import blockQuoteTemplateSchema from "../components/schemas/blockQuoteTemplateSchema";
+import newsLetterSignupTemplateSchema from "../components/schemas/newsLetterSignupTemplateSchema";
 
-const metaSchema = {
+const metaSchema: TinaField = {
   type: "object",
   label: "meta",
   name: "meta",
@@ -143,67 +146,9 @@ const schema = defineSchema({
           label: "Body",
           name: "_body",
           templates: [
-            {
-              name: "DateTime",
-              label: "Date & Time",
-              inline: true,
-              fields: [
-                {
-                  name: "format",
-                  label: "Format",
-                  type: "string",
-                  options: ["utc", "iso", "local"],
-                },
-              ],
-            },
-            {
-              name: "BlockQuote",
-              label: "Block Quote",
-              fields: [
-                {
-                  name: "children",
-                  label: "Quote",
-                  type: "rich-text",
-                },
-                {
-                  name: "authorName",
-                  label: "Author",
-                  type: "string",
-                },
-              ],
-            },
-            {
-              name: "NewsletterSignup",
-              label: "Newsletter Sign Up",
-              fields: [
-                {
-                  name: "children",
-                  label: "CTA",
-                  type: "rich-text",
-                },
-                {
-                  name: "placeholder",
-                  label: "Placeholder",
-                  type: "string",
-                },
-                {
-                  name: "buttonText",
-                  label: "Button Text",
-                  type: "string",
-                },
-                {
-                  name: "disclaimer",
-                  label: "Disclaimer",
-                  type: "rich-text",
-                },
-              ],
-              ui: {
-                defaultItem: {
-                  placeholder: "Enter your email",
-                  buttonText: "Notify Me",
-                },
-              },
-            },
+            dateTimeTemplateSchema,
+            blockQuoteTemplateSchema,
+            newsLetterSignupTemplateSchema,
           ],
           isBody: true,
         },
@@ -529,6 +474,9 @@ export const tinaConfig = defineConfig({
           }
           if (document._sys.filename === "about") {
             return `/about`;
+          }
+          if (document._sys.filename === "contact") {
+            return `/contact`;
           }
           return undefined;
         }

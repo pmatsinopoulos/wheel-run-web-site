@@ -1,8 +1,12 @@
 import React from "react";
-import { Container } from "../util/container";
-import { Section } from "../util/section";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { TinaTemplate } from "tinacms";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { Section } from "../util/section";
+import { Container } from "../util/container";
+import components from "../util/components";
+import dateTimeTemplateSchema from "../schemas/dateTimeTemplateSchema";
+import blockQuoteTemplateSchema from "../schemas/blockQuoteTemplateSchema";
+import newsLetterSignupTemplateSchema from "../schemas/newsLetterSignupTemplateSchema";
 
 export const Content = ({ data, parentField = "" }) => {
   return (
@@ -14,7 +18,7 @@ export const Content = ({ data, parentField = "" }) => {
         data-tinafield={`${parentField}.body`}
         size="large"
       >
-        <TinaMarkdown content={data.body} />
+        <TinaMarkdown components={components} content={data.body} />
       </Container>
     </Section>
   );
@@ -50,6 +54,12 @@ export const contentBlockSchema: TinaTemplate = {
       type: "rich-text",
       label: "Body",
       name: "body",
+      isBody: true,
+      templates: [
+        dateTimeTemplateSchema,
+        blockQuoteTemplateSchema,
+        newsLetterSignupTemplateSchema,
+      ],
     },
     {
       type: "string",
