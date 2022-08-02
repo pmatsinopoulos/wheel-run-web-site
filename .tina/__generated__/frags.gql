@@ -119,6 +119,10 @@ fragment PageParts on Page {
       }
       color
     }
+    ... on PageBlocksContactUs {
+      id
+      color
+    }
     ... on PageBlocksFeatures {
       sectionLabel
       id

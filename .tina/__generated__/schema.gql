@@ -257,6 +257,11 @@ type PageBlocksHero {
   color: String
 }
 
+type PageBlocksContactUs {
+  id: String
+  color: String
+}
+
 type PageBlocksFeaturesItemsIcon {
   color: String
   style: String
@@ -330,7 +335,7 @@ type PageBlocksTestimonial {
   color: String
 }
 
-union PageBlocks = PageBlocksImageTextSection | PageBlocksHero | PageBlocksFeatures | PageBlocksContent | PageBlocksTwoColumnsContent | PageBlocksTestimonial
+union PageBlocks = PageBlocksImageTextSection | PageBlocksHero | PageBlocksContactUs | PageBlocksFeatures | PageBlocksContent | PageBlocksTwoColumnsContent | PageBlocksTestimonial
 
 type PageMetaOgNamespace {
   value: String
@@ -526,6 +531,11 @@ input PageBlocksHeroMutation {
   color: String
 }
 
+input PageBlocksContactUsMutation {
+  id: String
+  color: String
+}
+
 input PageBlocksFeaturesItemsIconMutation {
   color: String
   style: String
@@ -602,6 +612,7 @@ input PageBlocksTestimonialMutation {
 input PageBlocksMutation {
   imageTextSection: PageBlocksImageTextSectionMutation
   hero: PageBlocksHeroMutation
+  contactUs: PageBlocksContactUsMutation
   features: PageBlocksFeaturesMutation
   content: PageBlocksContentMutation
   twoColumnsContent: PageBlocksTwoColumnsContentMutation

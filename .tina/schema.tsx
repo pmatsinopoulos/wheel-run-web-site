@@ -1,6 +1,7 @@
 import React from "react";
 import { defineSchema, defineConfig, wrapFieldsWithMeta, TinaTemplate, TinaField } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
+import { contactUsBlockSchema } from "../components/blocks/contactUs";
 import { twoColumnsContentBlockSchema } from "../components/blocks/twoColumnsContent";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
@@ -427,6 +428,7 @@ const schema = defineSchema({
           templates: [
             imageTextSectionSchema,
             heroBlockSchema,
+            contactUsBlockSchema,
             featureBlockSchema,
             contentBlockSchema,
             twoColumnsContentBlockSchema,

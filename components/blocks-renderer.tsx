@@ -4,6 +4,7 @@ import { Content } from "./blocks/content";
 import { TwoColumnsContent } from "./blocks/twoColumnsContent";
 import { Features } from "./blocks/features";
 import { Hero } from "./blocks/hero";
+import { ContactUs } from "./blocks/contactUs";
 import { ImageTextSection } from "./blocks/imageTextSection";
 import { Testimonial } from "./blocks/testimonial";
 
@@ -22,7 +23,7 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     <Content data={block} parentField={`blocks.${i}`} />
                   </div>
                 );
-                case "PageBlocksTwoColumnsContent":
+              case "PageBlocksTwoColumnsContent":
                   return (
                     <div
                       data-tinafield={`blocks.${i}`}
@@ -31,7 +32,7 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                       <TwoColumnsContent data={block} parentField={`blocks.${i}`} />
                     </div>
                   );
-                case "PageBlocksHero":
+              case "PageBlocksHero":
                 return (
                   <div
                     data-tinafield={`blocks.${i}`}
@@ -47,6 +48,15 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                       key={i + block.__typename}
                     >
                       <ImageTextSection data={block} parentField={`blocks.${i}`} />
+                    </div>
+                  );
+              case "PageBlocksContactUs":
+                  return (
+                    <div
+                      data-tinafield={`blocks.${i}`}
+                      key={i + block.__typename}
+                    >
+                      <ContactUs data={block} parentField={`blocks.${i}`} />
                     </div>
                   );
               case "PageBlocksFeatures":

@@ -2183,6 +2183,19 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
+"@typeform/embed-react@^1.18.0":
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/@typeform/embed-react/-/embed-react-1.18.0.tgz#a89da5e3920a42bb802e7b6feac9685aa2783096"
+  integrity sha512-MUbTGoAUX2T8G/tOkhuAOBEPKsOROg/M16MK/5lPQj9a6auh9aJdVFbWRwXZx9U0M7ApG4u7BpNNCTj86sklxA==
+  dependencies:
+    "@typeform/embed" "1.36.1"
+    fast-deep-equal "^3.1.3"
+
+"@typeform/embed@1.36.1":
+  version "1.36.1"
+  resolved "https://registry.yarnpkg.com/@typeform/embed/-/embed-1.36.1.tgz#43dddcacbfc0fbb7efbe0b73c4e6bcbb0e0bd353"
+  integrity sha512-5Oll+EFT6UcU0oWA4n5ZwkXy+8KI4SwOIDMi3F8LMTEvoo4A7oeGtMi7MD2O+uuhgNTMcNFeBe6B8ovW83swAA==
+
 "@types/acorn@^4.0.0":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@types/acorn/-/acorn-4.0.6.tgz#d61ca5480300ac41a7d973dd5b84d0a591154a22"

@@ -12,7 +12,7 @@ export const Content = ({ data, parentField = "" }) => {
       <Container
         className={`max-w-4xl prose prose-lg ${
           data.color === "primary" ? `prose-primary` : `dark:prose-dark`
-        }`}
+        } pb-4`}
         data-tinafield={`${parentField}.body`}
         size="large"
       >
@@ -64,6 +64,6 @@ export const contentBlockSchema: TinaTemplate = {
         { label: "Tint", value: "tint" },
         { label: "Primary", value: "primary" },
       ],
-    },
+    }
   ],
 };
