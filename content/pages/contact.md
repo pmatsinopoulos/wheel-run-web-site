@@ -12,6 +12,24 @@ blocks:
 
       Send us your message using the form below and we will try to get back to
       you as soon as possible.
+
+
+      <ContactUsForm
+        namePlaceholder="Enter your name"
+        emailPlaceholder="Enter your email"
+        messagePlaceholder="Enter your message"
+        buttonPrompt="Send Message"
+        disclaimer={
+      <>
+
+      We don't share any of your contact details with third parties.
+
+
+      </>
+
+      }
+
+      />
     color: tint
     _template: content
 meta:

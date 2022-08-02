@@ -7,9 +7,7 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { imageTextSectionSchema } from "../components/blocks/imageTextSection";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
-import dateTimeTemplateSchema from "../components/schemas/dateTimeTemplateSchema";
-import blockQuoteTemplateSchema from "../components/schemas/blockQuoteTemplateSchema";
-import newsLetterSignupTemplateSchema from "../components/schemas/newsLetterSignupTemplateSchema";
+import richTextTemplatesSchemas from "../components/schemas/richTextTemplatesSchemas";
 
 const metaSchema: TinaField = {
   type: "object",
@@ -145,11 +143,7 @@ const schema = defineSchema({
           type: "rich-text",
           label: "Body",
           name: "_body",
-          templates: [
-            dateTimeTemplateSchema,
-            blockQuoteTemplateSchema,
-            newsLetterSignupTemplateSchema,
-          ],
+          templates: richTextTemplatesSchemas,
           isBody: true,
         },
         metaSchema,
@@ -471,9 +465,6 @@ export const tinaConfig = defineConfig({
         if (["page"].includes(collection.name)) {
           if (document._sys.filename === "home") {
             return `/`;
-          }
-          if (document._sys.filename === "about") {
-            return `/about`;
           }
           if (document._sys.filename === "contact") {
             return `/contact`;

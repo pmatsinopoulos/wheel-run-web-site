@@ -4,9 +4,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Section } from "../util/section";
 import { Container } from "../util/container";
 import components from "../util/components";
-import dateTimeTemplateSchema from "../schemas/dateTimeTemplateSchema";
-import blockQuoteTemplateSchema from "../schemas/blockQuoteTemplateSchema";
-import newsLetterSignupTemplateSchema from "../schemas/newsLetterSignupTemplateSchema";
+import richTextTemplatesSchemas from "../schemas/richTextTemplatesSchemas";
 
 export const Content = ({ data, parentField = "" }) => {
   return (
@@ -55,11 +53,7 @@ export const contentBlockSchema: TinaTemplate = {
       label: "Body",
       name: "body",
       isBody: true,
-      templates: [
-        dateTimeTemplateSchema,
-        blockQuoteTemplateSchema,
-        newsLetterSignupTemplateSchema,
-      ],
+      templates: richTextTemplatesSchemas,
     },
     {
       type: "string",
