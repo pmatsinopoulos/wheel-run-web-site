@@ -36,7 +36,7 @@ export const Post = (props) => {
       "from-yellow-400 to-yellow-500 dark:from-yellow-300 dark:to-yellow-500",
   };
 
-  let formattedDateStr = formattedDate(props.date);
+  const formattedDateStr = formattedDate(props.date);
 
   return (
     <Section className="flex-1">
