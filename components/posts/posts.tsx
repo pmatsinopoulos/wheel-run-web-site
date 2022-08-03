@@ -3,6 +3,7 @@ import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BsArrowRight } from "react-icons/bs";
 import { useTheme } from "../layout";
+import formattedDate from "../util/formattedDate";
 
 export const Posts = ({ data }) => {
   const theme = useTheme();
@@ -59,7 +60,7 @@ export const Posts = ({ data }) => {
                   —
                 </span>
                 <p className="text-sm text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover:text-gray-150">
-                  {post.date}
+                  {formattedDate(post._values.date)}
                 </p>
               </div>
             </a>
