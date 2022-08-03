@@ -20,7 +20,8 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
   const ogType = data.head.meta.og.type
   const customOgMeta = data.head.meta.og.customMeta
   const ogImage = data.head.meta.og.image
-  const ogUrl = `https://www.wheelrun.biz${router.asPath}`
+  const domain = 'www.wheelrun.biz'
+  const ogUrl = `https://${domain}${router.asPath}`
   const ogSiteName = data.header.brand
 
   return (
@@ -55,7 +56,10 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
         {/* ------- Twitter Metadat ----------*/}
         <meta property="twitter:title" content={headTitle} />
         <meta property="twitter:description" content={headDescription} />
-        <meta property="twitter:card" content={ogImage} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={ogImage} />
+        <meta property="twitter:url" content={ogUrl} />
+        <meta property="twitter:domain" content={domain} />
 
         {data.theme.font === "nunito" && (
           <>
