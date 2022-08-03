@@ -18,6 +18,7 @@ import { useTheme } from "../layout";
 import format from "date-fns/format";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import components from "../util/components";
+import formattedDate from "../util/formattedDate";
 
 export const Post = (props) => {
   const theme = useTheme();
@@ -35,11 +36,7 @@ export const Post = (props) => {
       "from-yellow-400 to-yellow-500 dark:from-yellow-300 dark:to-yellow-500",
   };
 
-  const date = new Date(props.date);
-  let formattedDate = "";
-  if (!isNaN(date.getTime())) {
-    formattedDate = format(date, "MMM dd, yyyy");
-  }
+  let formattedDateStr = formattedDate(props.date);
 
   return (
     <Section className="flex-1">
@@ -81,7 +78,7 @@ export const Post = (props) => {
             data-tinafield="date"
             className="text-base text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover:text-gray-150"
           >
-            {formattedDate}
+            {formattedDateStr}
           </p>
         </div>
       </Container>
