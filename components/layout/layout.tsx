@@ -27,7 +27,6 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
   return (
     <>
       <Head>
-        <html lang="en" prefix={ogPrefix}/>
         <title>{headTitle}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={headDescription} />
@@ -81,6 +80,7 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
             />
           </>
         )}
+        <html lang="en" prefix={ogPrefix}/>
       </Head>
       <Theme data={data?.theme}>
         <div
