@@ -15,7 +15,6 @@ import React from "react";
 import { Container } from "../util/container";
 import { Section } from "../util/section";
 import { useTheme } from "../layout";
-import format from "date-fns/format";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import components from "../util/components";
 import formattedDate from "../util/formattedDate";
@@ -81,15 +80,20 @@ export const Post = (props) => {
             {formattedDateStr}
           </p>
         </div>
+        {props.heroImg && (
+          <div data-tinafield="heroImg" className="mb-14">
+            <img
+              src={props.heroImg.image}
+              className="block h-auto max-w-4xl lg:max-w-6xl mx-auto"
+            />
+            {props.heroImg.imageBy && props.heroImg.imageFrom && (
+              <div className="text-center mt-2 text-sm opacity-70">
+                Image by <a href={props.heroImg.imageBy.url} className="hover:opacity-80 underline">{props.heroImg.imageBy.text}</a> from  <a href={props.heroImg.imageFrom.url} className="hover:opacity-80 underline">{props.heroImg.imageFrom.text}</a>
+              </div>
+            )}
+          </div>
+        )}
       </Container>
-      {props.heroImg && (
-        <div data-tinafield="heroImg" className="">
-          <img
-            src={props.heroImg}
-            className="mb-14 block h-auto max-w-4xl lg:max-w-6xl mx-auto"
-          />
-        </div>
-      )}
       <Container className={`flex-1 max-w-4xl pt-4`} size="large">
         <div className="prose dark:prose-dark  w-full max-w-none">
           <TinaMarkdown components={components} content={props._body} />
