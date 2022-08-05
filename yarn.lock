@@ -8129,6 +8129,11 @@ react-final-form@^6.3.0:
   dependencies:
     "@babel/runtime" "^7.15.4"
 
+react-gist@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-gist/-/react-gist-1.2.4.tgz#4ee71f24cc6f60836354e2ad6e30f6d24e06e0f7"
+  integrity sha512-uDgPJ08IJsl/7auK3CS53JKGC1P/X7tNCzo9k0r6D/5l+ilsxE1+SAaylJCh0aeyZoJOoxQikKU+MHsAvA9iFw==
+
 react-icons@^4.2.0, react-icons@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
