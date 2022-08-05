@@ -20,7 +20,7 @@ export default function BlogPostPage(
         meta: {
           ...data.post.meta,
           og: {
-            ...data.post.meta.og,
+            ...data.post.meta?.og,
             type: 'article',
             image: data.post.heroImg,
             namespace: {
@@ -44,7 +44,7 @@ export default function BlogPostPage(
                 property: "article:section",
                 content: data.post.section,
               },
-              ...data.post.tags.map((tag) => {
+              ...(data.post.tags || []).map((tag) => {
                 return (
                   {
                     property: "article:tag",
