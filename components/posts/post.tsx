@@ -84,7 +84,7 @@ export const Post = (props) => {
           <div data-tinafield="heroImg" className="mb-14">
             <img
               src={props.heroImg.image}
-              className="block h-auto max-w-4xl lg:max-w-6xl mx-auto"
+              className="block h-auto mx-auto"
             />
             {props.heroImg.imageBy && props.heroImg.imageFrom && (
               <div className="text-center mt-2 text-sm opacity-70">

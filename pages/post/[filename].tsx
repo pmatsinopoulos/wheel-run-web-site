@@ -15,6 +15,7 @@ export default function BlogPostPage(
   if (data && data.post) {
     const layoutData = {
       ...data.global,
+      parentClassName: "md:mx-8 lg:mx-44 xl:mx-[24rem] 2xl:mx-[32rem]",
       head: {
         title: data.post.title,
         meta: {
