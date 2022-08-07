@@ -19,6 +19,7 @@ export default function HomePage(
 
   const layoutData = {
     ...props.data.global,
+    parentClassName: "md:mx-8 lg:mx-44 xl:mx-[24rem] 2xl:mx-[32rem]",
     head: {
       title: 'Blog',
       meta: {
