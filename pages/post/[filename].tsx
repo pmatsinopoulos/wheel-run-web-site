@@ -66,7 +66,7 @@ export default function BlogPostPage(
   }
   return (
     <Layout>
-      <div>No data</div>;
+      <div>No data</div>
     </Layout>
   );
 }
