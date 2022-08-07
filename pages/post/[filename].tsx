@@ -60,7 +60,7 @@ export default function BlogPostPage(
     };
     return (
       <Layout rawData={data} data={layoutData as any}>
-        <Post {...data.post} />;
+        <Post {...data.post} />
       </Layout>
     );
   }
