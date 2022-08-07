@@ -83,6 +83,22 @@ type Collection {
 
 union DocumentNode = Post | Global | Author | Page
 
+type PostHeroImgImageBy {
+  url: String
+  text: String
+}
+
+type PostHeroImgImageFrom {
+  url: String
+  text: String
+}
+
+type PostHeroImg {
+  image: String
+  imageBy: PostHeroImgImageBy
+  imageFrom: PostHeroImgImageFrom
+}
+
 union PostAuthor = Author
 
 type PostMetaOgNamespace {
@@ -109,7 +125,7 @@ type PostMeta {
 
 type Post implements Node & Document {
   title: String!
-  heroImg: String
+  heroImg: PostHeroImg
   excerpt: JSON
   author: PostAuthor
   date: String
@@ -401,6 +417,22 @@ input DocumentMutation {
   page: PageMutation
 }
 
+input PostHeroImgImageByMutation {
+  url: String
+  text: String
+}
+
+input PostHeroImgImageFromMutation {
+  url: String
+  text: String
+}
+
+input PostHeroImgMutation {
+  image: String
+  imageBy: PostHeroImgImageByMutation
+  imageFrom: PostHeroImgImageFromMutation
+}
+
 input PostMetaOgNamespaceMutation {
   value: String
   uri: String
@@ -425,7 +457,7 @@ input PostMetaMutation {
 
 input PostMutation {
   title: String
-  heroImg: String
+  heroImg: PostHeroImgMutation
   excerpt: JSON
   author: String
   date: String

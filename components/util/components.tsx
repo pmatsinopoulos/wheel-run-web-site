@@ -1,4 +1,5 @@
 import React from "react";
+import Gist from "react-gist";
 import { TinaMarkdownContent, Components, TinaMarkdown } from "tinacms/dist/rich-text";
 
 const components: Components<{
@@ -8,6 +9,11 @@ const components: Components<{
   };
   DateTime: {
     format?: string;
+  };
+  GistCodeBlock: {
+    gistId: string;
+    gistFile: string;
+    caption: string;
   };
   NewsletterSignup: {
     placeholder: string;
@@ -44,6 +50,14 @@ const components: Components<{
       default:
         return <span>{dt.toLocaleDateString()}</span>;
     }
+  },
+  GistCodeBlock: (props) => {
+    return (
+      <div>
+        <Gist id={props.gistId} file={props.gistFile} ></Gist>
+        <div className="text-center mt-2 text-sm opacity-70">{props.caption}</div>
+      </div>
+    );
   },
   NewsletterSignup: (props) => {
     return (

@@ -23,6 +23,7 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
   const domain = 'www.wheelrun.biz'
   const ogUrl = `https://${domain}${router.asPath}`
   const ogSiteName = data.header.brand
+  const parentClassName = data.parentClassName || ''
 
   return (
     <>
@@ -91,7 +92,7 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
           }`}
         >
           <Header data={data?.header} />
-          <div className="flex-1 text-gray-800 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 flex flex-col">
+          <div className={`flex-1 text-gray-800 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 flex flex-col ${parentClassName}`}>
             {children}
           </div>
           <Footer

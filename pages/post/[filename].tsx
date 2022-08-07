@@ -15,12 +15,13 @@ export default function BlogPostPage(
   if (data && data.post) {
     const layoutData = {
       ...data.global,
+      parentClassName: "md:mx-8 lg:mx-44 xl:mx-[24rem] 2xl:mx-[32rem]",
       head: {
         title: data.post.title,
         meta: {
           ...data.post.meta,
           og: {
-            ...data.post.meta.og,
+            ...data.post.meta?.og,
             type: 'article',
             image: data.post.heroImg,
             namespace: {
@@ -44,7 +45,7 @@ export default function BlogPostPage(
                 property: "article:section",
                 content: data.post.section,
               },
-              ...data.post.tags.map((tag) => {
+              ...(data.post.tags || []).map((tag) => {
                 return (
                   {
                     property: "article:tag",
@@ -65,7 +66,7 @@ export default function BlogPostPage(
   }
   return (
     <Layout>
-      <div>No data</div>;
+      <div>No data</div>
     </Layout>
   );
 }

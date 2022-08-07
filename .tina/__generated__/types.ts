@@ -197,6 +197,25 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Post | Global | Author | Page;
 
+export type PostHeroImgImageBy = {
+  __typename?: 'PostHeroImgImageBy';
+  url?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+export type PostHeroImgImageFrom = {
+  __typename?: 'PostHeroImgImageFrom';
+  url?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+export type PostHeroImg = {
+  __typename?: 'PostHeroImg';
+  image?: Maybe<Scalars['String']>;
+  imageBy?: Maybe<PostHeroImgImageBy>;
+  imageFrom?: Maybe<PostHeroImgImageFrom>;
+};
+
 export type PostAuthor = Author;
 
 export type PostMetaOgNamespace = {
@@ -228,7 +247,7 @@ export type PostMeta = {
 export type Post = Node & Document & {
   __typename?: 'Post';
   title: Scalars['String'];
-  heroImg?: Maybe<Scalars['String']>;
+  heroImg?: Maybe<PostHeroImg>;
   excerpt?: Maybe<Scalars['JSON']>;
   author?: Maybe<PostAuthor>;
   date?: Maybe<Scalars['String']>;
@@ -636,6 +655,22 @@ export type DocumentMutation = {
   page?: InputMaybe<PageMutation>;
 };
 
+export type PostHeroImgImageByMutation = {
+  url?: InputMaybe<Scalars['String']>;
+  text?: InputMaybe<Scalars['String']>;
+};
+
+export type PostHeroImgImageFromMutation = {
+  url?: InputMaybe<Scalars['String']>;
+  text?: InputMaybe<Scalars['String']>;
+};
+
+export type PostHeroImgMutation = {
+  image?: InputMaybe<Scalars['String']>;
+  imageBy?: InputMaybe<PostHeroImgImageByMutation>;
+  imageFrom?: InputMaybe<PostHeroImgImageFromMutation>;
+};
+
 export type PostMetaOgNamespaceMutation = {
   value?: InputMaybe<Scalars['String']>;
   uri?: InputMaybe<Scalars['String']>;
@@ -660,7 +695,7 @@ export type PostMetaMutation = {
 
 export type PostMutation = {
   title?: InputMaybe<Scalars['String']>;
-  heroImg?: InputMaybe<Scalars['String']>;
+  heroImg?: InputMaybe<PostHeroImgMutation>;
   excerpt?: InputMaybe<Scalars['JSON']>;
   author?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['String']>;
@@ -901,9 +936,9 @@ export type BlogPostQueryQueryVariables = Exact<{
 }>;
 
 
-export type BlogPostQueryQuery = { __typename?: 'Query', post: { __typename?: 'Post', title: string, heroImg?: string | null, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null }, global: { __typename?: 'Global', head?: { __typename: 'GlobalHead', title?: string | null, meta?: { __typename: 'GlobalHeadMeta', description?: string | null } | null } | null, header?: { __typename: 'GlobalHeader', brand?: string | null, color?: string | null, icon?: { __typename: 'GlobalHeaderIcon', color?: string | null, style?: string | null, name?: string | null } | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, viewRawDataButton?: boolean | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, linkedin?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null } };
+export type BlogPostQueryQuery = { __typename?: 'Query', post: { __typename?: 'Post', title: string, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, heroImg?: { __typename: 'PostHeroImg', image?: string | null, imageBy?: { __typename: 'PostHeroImgImageBy', url?: string | null, text?: string | null } | null, imageFrom?: { __typename: 'PostHeroImgImageFrom', url?: string | null, text?: string | null } | null } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null }, global: { __typename?: 'Global', head?: { __typename: 'GlobalHead', title?: string | null, meta?: { __typename: 'GlobalHeadMeta', description?: string | null } | null } | null, header?: { __typename: 'GlobalHeader', brand?: string | null, color?: string | null, icon?: { __typename: 'GlobalHeaderIcon', color?: string | null, style?: string | null, name?: string | null } | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, viewRawDataButton?: boolean | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, linkedin?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null } };
 
-export type PostPartsFragment = { __typename?: 'Post', title: string, heroImg?: string | null, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, author?: { __typename?: 'Author', id: string } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null };
+export type PostPartsFragment = { __typename?: 'Post', title: string, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, heroImg?: { __typename: 'PostHeroImg', image?: string | null, imageBy?: { __typename: 'PostHeroImgImageBy', url?: string | null, text?: string | null } | null, imageFrom?: { __typename: 'PostHeroImgImageFrom', url?: string | null, text?: string | null } | null } | null, author?: { __typename?: 'Author', id: string } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null };
 
 export type GlobalPartsFragment = { __typename?: 'Global', head?: { __typename: 'GlobalHead', title?: string | null, meta?: { __typename: 'GlobalHeadMeta', description?: string | null } | null } | null, header?: { __typename: 'GlobalHeader', brand?: string | null, color?: string | null, icon?: { __typename: 'GlobalHeaderIcon', color?: string | null, style?: string | null, name?: string | null } | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, viewRawDataButton?: boolean | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, linkedin?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null };
 
@@ -916,7 +951,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title: string, heroImg?: string | null, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', id: string } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null } };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title: string, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, heroImg?: { __typename: 'PostHeroImg', image?: string | null, imageBy?: { __typename: 'PostHeroImgImageBy', url?: string | null, text?: string | null } | null, imageFrom?: { __typename: 'PostHeroImgImageFrom', url?: string | null, text?: string | null } | null } | null, author?: { __typename?: 'Author', id: string } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -927,7 +962,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title: string, heroImg?: string | null, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', id: string } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title: string, excerpt?: any | null, date?: string | null, section?: string | null, tags?: Array<string | null> | null, _body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, heroImg?: { __typename: 'PostHeroImg', image?: string | null, imageBy?: { __typename: 'PostHeroImgImageBy', url?: string | null, text?: string | null } | null, imageFrom?: { __typename: 'PostHeroImgImageFrom', url?: string | null, text?: string | null } | null } | null, author?: { __typename?: 'Author', id: string } | null, meta?: { __typename: 'PostMeta', description?: string | null, og?: { __typename: 'PostMetaOg', type?: string | null, image?: string | null, namespace?: { __typename: 'PostMetaOgNamespace', value?: string | null, uri?: string | null } | null, customMeta?: Array<{ __typename: 'PostMetaOgCustomMeta', property?: string | null, content?: string | null } | null> | null } | null } | null } | null } | null> | null } };
 
 export type GlobalQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -1040,7 +1075,20 @@ export const LayoutQueryFragmentFragmentDoc = gql`
 export const PostPartsFragmentDoc = gql`
     fragment PostParts on Post {
   title
-  heroImg
+  heroImg {
+    __typename
+    image
+    imageBy {
+      __typename
+      url
+      text
+    }
+    imageFrom {
+      __typename
+      url
+      text
+    }
+  }
   excerpt
   author {
     ... on Document {
