@@ -13,6 +13,7 @@ const components: Components<{
   GistCodeBlock: {
     gistId: string;
     gistFile: string;
+    caption: string;
   };
   NewsletterSignup: {
     placeholder: string;
