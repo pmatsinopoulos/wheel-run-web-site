@@ -1,6 +1,19 @@
 fragment PostParts on Post {
   title
-  heroImg
+  heroImg {
+    __typename
+    image
+    imageBy {
+      __typename
+      url
+      text
+    }
+    imageFrom {
+      __typename
+      url
+      text
+    }
+  }
   excerpt
   author {
     ... on Document {

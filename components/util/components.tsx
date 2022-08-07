@@ -52,7 +52,10 @@ const components: Components<{
   },
   GistCodeBlock: (props) => {
     return (
-      <Gist id={props.gistId} file={props.gistFile} ></Gist>
+      <div>
+        <Gist id={props.gistId} file={props.gistFile} ></Gist>
+        <div className="text-center mt-2 text-sm opacity-70">{props.caption}</div>
+      </div>
     );
   },
   NewsletterSignup: (props) => {

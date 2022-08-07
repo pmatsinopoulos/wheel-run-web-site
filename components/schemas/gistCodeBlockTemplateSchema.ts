@@ -14,6 +14,11 @@ const gistCodeBlockTemplateSchema: TinaTemplate = {
       label: "Gist File",
       type: "string",
     },
+    {
+      name: "caption",
+      label: "Caption",
+      type: "string",
+    }
   ],
 };
 

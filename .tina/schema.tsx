@@ -105,9 +105,50 @@ const schema = defineSchema({
           required: true,
         },
         {
-          type: "image",
+          type: "object",
           name: "heroImg",
           label: "Hero Image",
+          fields: [
+            {
+              type: "image",
+              name: "image",
+              label: "Image"
+            },
+            {
+              type: "object",
+              name: "imageBy",
+              label: "Image By",
+              fields: [
+                {
+                  type: "string",
+                  name: "url",
+                  label: "URL",
+                },
+                {
+                  type: "string",
+                  name: "text",
+                  lable: "Text",
+                },
+              ],
+            },
+            {
+              type: "object",
+              name: "imageFrom",
+              label: "imageFrom",
+              fields: [
+                {
+                  type: "string",
+                  name: "url",
+                  label: "URL",
+                },
+                {
+                  type: "string",
+                  name: "text",
+                  lable: "Text",
+                },
+              ]
+            }
+          ]
         },
         {
           type: "rich-text",

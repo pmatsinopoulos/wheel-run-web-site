@@ -1,0 +1,599 @@
+---
+title: "Moving from Webflow to\_Tina"
+heroImg:
+  image: >-
+    https://res.cloudinary.com/oneth0usandwords/image/upload/v1659625051/wheel-run/production/website/car-3090879_1920_tnt97i.jpg
+  imageBy:
+    url: >-
+      https://pixabay.com/users/toby_parsons-4634294/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3090879
+    text: Toby Parsons
+  imageFrom:
+    url: >-
+      https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3090879
+    text: Pixabay
+excerpt: |
+  Why and how we moved from Webflow to Tina — Hints and Advices
+author: content/authors/wheel-run-team.md
+date: '2022-08-05T19:44:00.000Z'
+tags:
+  - tina
+  - webflow
+---
+
+# Introduction
+
+This is a post about how I switched one of my web sites from [Webflow](https://webflow.com) to [Tina](https://tina.io). I would like to share with you the why and the how.
+
+Things that you are going to find in this post:
+
+*   Best way to start using Tina.
+*   Where to deploy your website.
+*   Start Tina locally and make content and code changes before deploying to production.
+*   Integrate with Cloudinary.
+*   Add extra metadata fields and og tags.
+*   Create page blocks.
+*   Customize the list rendering.
+*   Customize the footer.
+*   Customize the header.
+*   Embed a Typeform into a page.
+*   Edit with contextual editing. 
+*   Use rich-text components both in posts and in content blocks.
+*   Embed Github Gists. 
+*   Generate sitemap.xml.
+
+# Why
+
+Don’t take me wrong. [Webflow](https://webflow.com/) is a **fantastic**, absolutely **amazing** CMS that can skyrocket your productivity when implementing websites. And they are made so beautiful and fast! I highly recommend it. 
+
+But, the only problem for me is its inability to write content that is developer-friendly, like code blocks.
+
+This, for example, is a code block:
+
+```ruby
+puts 'Hello World!"
+```
+
+Or ability to write parts of a phrase in code style `like this`.
+
+On top of that, it does not come for free when you want your own custom domain and some basic CMS functionality. I am not saying it is expensive, but I am just saying that my limited needs didn’t worth the money.
+
+That’s why I decided to switch to [Tina](https://tina.io/). Exactly as they claim on their site, it is ideal for a
+
+> developer-first site.
+
+Hence, if you are a developer like me and you want to develop a *developer-first site* with CMS functionality, then you may want to consider [Tina](https://tina.io/) too.
+
+Here is how I developed my first website using [Tina](https://tina.io/), with some hints and advices.
+
+**Important:** I have made the code of the website [publicly available here](https://github.com/pmatsinopoulos/wheel-run-web-site). So, you can download / clone and play with it. You can also use it to build your own website.
+
+# How — Hints and Advices
+
+## Use One of the Quick Starters
+
+I have decided to go with one of the quick starters [here](https://app.tina.io/quickstart).
+
+![Choosing a Tina Quick Starter](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659628089/wheel-run/production/website/start-building-with-tina-cloud_vzv4ry.jpg "Choosing a Quick Starter")
+
+In fact, I have chosen the `Tina Cloud Starter`, which had the initial marketing layout page and the setup was ready to work with [Tailwind CSS](https://tailwindcss.com/). 
+
+The good thing with the starters is that they use Tina Cloud, which is the way to
+
+1\. have your site deployed to Vercel, and
+
+2\. edit the content and have your changes automatically synchronized with the Github repo of your site.
+
+So, Tina Cloud makes the whole editing and deployment experience very easy.
+
+If you follow this process:
+
+1\. A Github repository will be created (if not present) to store your website code and content.
+
+2\. The Github repository will have a new webhook registered to push changes to Tina Cloud.
+
+![Webhook to push Github Repository changes to Tina Cloud](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659628265/wheel-run/production/website/webhooks-to-push-changes-to-tina_msys4i.jpg "Webhook to push Github Repository changes to Tina Cloud")
+
+3\. Two Github Apps will be integrated with this Github repository:
+
+![Github Apps](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659628463/wheel-run/production/website/installed-github-apps_du91av.jpg "Github Apps")
+
+*   Tina Cloud App
+*   Vercel
+
+Tina is responsible for allowing you to edit the site content online. Whereas, Vercel is responsible for building and hosting your site.
+
+4\. Vercel Account
+
+You will have a new Vercel Account with the project registered. Like this:
+
+![Vercel Dashboard](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659628630/wheel-run/production/website/vercel-dashboard_nfroan.jpg "Vercel Dashboard")
+
+You will be on the `Hobby` plan, which is free. 
+
+Note: Read more about the Vercel pricing [here](https://vercel.com/pricing).
+
+Vercel is integrated with your Github repo and this means that every time you push to the repo, Vercel will build and deploy your project. And if you push a branch other than `main`, then it will create a temporary branch-specific URL for you to review the content of your site. As soon as you merge to `main`, it will deploy to `Production` environment which will push the site to the URL
+
+```
+https://<project-name>.vercel.app
+```
+
+For example, my project is: `wheel-run-web-site`, which means when deploying to production it is published to [`https://wheel-run-web-site.vercel.app`](https://wheel-run-web-site.vercel.app.)[.](https://wheel-run-web-site.vercel.app.)
+
+## Clone The Repo Locally And Work as a Developer Would
+
+Everything is ready and works, but it is not *your* content. It is the Tina Starter content. You can still use Tina Cloud to edit, but I believe it is much more appropriate to clone the repo locally and follow the standard development flow for changes both on the site code and its content.
+
+## Start the Server Locally
+
+After you do 
+
+```
+$ yarn install
+```
+
+then you can start the server locally:
+
+```
+$ yarn dev
+```
+
+Then you can use the [`http://localhost:3000/admin`](http://localhost:3000/admin) to edit your site content and save.
+
+This changes your site locally and you can see the changes with `git diff`. 
+
+If you are happy, create a branch, add, commit, push and create a PR.
+
+Wait for Vercel to build the preview and access the final preview with the URL published by Vercel build process. 
+
+If everything is ok, then you merge your PR and Vercel will take over to publish to the production URL.
+
+## Read the Docs
+
+The [Tina documentation](https://tina.io/docs/) is very good and you should read it all. Try their examples into your project. And then, when you will do the changes you really need, I am pretty sure you will be able to find your way out much easier.
+
+## The Tina Schema File — Make it TSX
+
+The Tina Schema File `.tina/schema.ts`, is a Typescript type file. I am suggesting that you turn it into a `.tsx` so that you are able to add [React JSX](https://reactjs.org/docs/introducing-jsx.html) statements inside.
+
+If you do this, make sure that you also update the file:
+
+```
+.tina/components/TinaProvider.jsx
+```
+
+to import the `tinaConfig` from the correct schema file.
+
+Moreover, if you finally add JSX code inside your `.tina/schema.tsx` file, make sure you do
+
+```
+import React from "react";
+```
+
+at the beginning.
+
+## MD and MDX
+
+You can have your content stored and edited in different formats. Two of the most useful ones are
+
+*   MD, which is the standard Markdown formatted content
+*   MDX, which is the standard Markdown formatted content which can also include, embedded, React Components.
+
+The starter comes with examples for both. Tina has the ability to convert MD and MDX content to HTML which is really amazing.
+
+## Content Folder
+
+The folder that holds your content is `content` folder. It has one sub-folder for each *collection* defined in the content schema (file: `.tina/schema.ts(x)`).
+
+In my case, the content folder has been configured as such:
+
+![Example Content Folder](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659628956/wheel-run/production/website/example-content-folder_mb7aw7.jpg "Example Content Folder")
+
+## Cloudinary Integration
+
+For the storage of images I have decided to go with [Cloudinary](https://cloudinary.com/). Tina integrates with it very smoothly.
+
+Everything is explained [here](https://tina.io/docs/reference/media/cloudinary/). Note that part of the configuration is already prepared if you use one of the Tina Starter.
+
+## Meta Support
+
+Tina, even the Starter templates, do not support metadata for the pages generated. Hence, your pages will be missing meta tags for description or [open graph tags](https://ogp.me/) for social sharing.
+
+I have done the following in order to introduce these:
+
+`meta`\*\* Schema as Tina Field\*\*
+
+I have created an object of type `TinaField`, inside the `.tina/schema.tsx` file:
+
+<GistCodeBlock gistId="b12f4641dd6c13908f849121734e1f02"/>
+
+This declared a schema for a field which I wanted to include in some of my collections. In particular, I included inside the `page` collection and inside the `post` collection.
+
+Here is the `page` collection part of the schema:
+
+![Metadata Schema Attached as Field to Page Collection](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659728936/wheel-run/production/website/metadata-schema-attached-as-field-to-page-collection_mljit5.jpg "Metadata Schema Attached as Field to Page Collection")
+
+This means that both posts and pages could be configured to have data like:
+
+*   `meta.description`
+*   `meta.og.type`
+*   `meta.og.image`
+*   `meta.og.namespace`
+
+e.t.c
+
+Then I had to make sure I am using these data inside the post and the page React Components.
+
+**Amend Layout Component**
+
+The changes to support metadata and og graph tags started from the Layout component:
+
+```
+components/layout/layout.tsx
+```
+
+I had to declare some consts at the beginning of the component implementation:
+
+<GistCodeBlock
+  gistId="de0df595101477605a6ebdc55898578b"
+  caption="Prepare the Local Variables for Metadata and Og Tags"
+/>
+
+As you can see, I get the metadata and og values from the `data.head` and the `data.header` objects.
+
+Then I build up the correct tags:
+
+<GistCodeBlock
+  gistId="b173ff0b49c3e9fb84d614afed155ed9"
+  caption="Layout To Take Advantage of the Metadata and Og Tags"
+/>
+
+Finally, what I had to do was to make sure the post and the page components are using the layout by passing the correct data for metadata.
+
+For the post case, the file I had to change was:
+
+```
+pages/post/[filename].tsx
+```
+
+<GistCodeBlock
+  gistId="cbc1b4d1542fd4003795f16d3ce5597b"
+  caption="Layout Data Preparation for Post Components"
+/>
+
+You can see how I prepare the `layoutData` object, which I pass to `Layout` component instance on line 46.
+
+For the page case, the file that I had to change was:
+
+```
+pages/[filename].tsx
+```
+
+<GistCodeBlock
+  gistId="4bafde9a0b3377183053421e37442d8e"
+  caption="Layout Data Preparation for Page Components"
+/>
+
+That was it. Then all the pages as well as the posts they had the correct meta and og tags, as long as the content editor has the information up-to-date in the content part of the codebase.
+
+## Create Page Blocks
+
+Tina works with *collections* and a special collection you will come up with is the `page` collection. This holds a list of all the pages in your site. A page is composed of *blocks*. The Tina Starter that I started with came with the following blocks:
+
+*   Hero
+*   Feature
+*   Content
+*   Testimonial
+
+But what if you want a different block to use in your page. In that case, you can create your own.
+
+For example, I created the block to have a two columns section. This is how I did it:
+
+**First create the file with the React component**
+
+Example:
+
+```
+components/blocks/twoColumnsContent.tsx
+```
+
+This file has two main parts:
+
+1.  The React component
+2.  The schema that drives Tina editor to allow the user to configure the content of the block.
+
+**The Block React Component**
+
+My two columns content React component is something like this:
+
+<GistCodeBlock
+  gistId="0ad37a5a3252c387146664edc0878488"
+  caption="Two Columns React Component"
+/>
+
+Whatever comes in the `data` object is the configurable payload of the block, the content of the block that is defined as structure by the block schema and it is populated by the content editor when setting up the content of the page/block.
+
+**The Block Schema**
+
+The second part of the block file, as I said, defines the schema/structure of the block. Here is the one I used for my two columns content:
+
+<GistCodeBlock
+  gistId="960ba2726b5e3835a6063a26973152d2"
+  caption="Two Columns Content Block Schema"
+/>
+
+**Registering the Block in Block Renderer**
+
+In order for the block to be rendered, it needs to be registered inside the block renderer:
+
+```
+components/blocks-renderer.tsx
+```
+
+This is how for the above two column block:
+
+![Register Block in the Block Renderer](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659730425/wheel-run/production/website/register-block-in-the-block-renderer_jik3do.jpg "Register Block in the Block Renderer")
+
+**Using Block Into a Page**
+
+To use the block into a page, you have to add it to the *templates* of the page in the schema (`.tina.schema.ts(x)`) that defines the page collection structure.
+
+![Declaring The Ability To Use the New Block](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659730572/wheel-run/production/website/declaring-the-ability-to-use-the-new-block_mnh2vj.jpg "Declaring The Ability To Use the New Block")
+
+That was it, then Tina uses its magic to allow you to edit the content of this block using some user interface experience like this:
+
+![Tina UI to Edit Content of Block](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659730673/wheel-run/production/website/tina-ui-to-edit-content-block_muft4x.jpg "Tina UI to Edit Content of Block")
+
+## Custom List Rendering
+
+While working with blocks and pages, I found very useful the ability to customize the way a block appears in the list of blocks of a page.
+
+Here, you can see, as an example, the list of blocks used in the home page of [Wheel Run](https://www.wheelrun.biz).
+
+![List of Blocks/Sections](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659893998/wheel-run/production/website/list-of-blocks-sections_ce85he.jpg "List of Blocks/Sections")
+
+The fact that each block/section appears to have its own custom title is very useful and it can be achieved using [Custom List Rendering](https://tina.io/docs/extending-tina/customize-list-ui/).
+
+## Customizing Footer
+
+This is the file to customize footer:
+
+```
+components/layout/footer/footer.tsx
+```
+
+I had to remove the Tina icon and replace with Wheel Run logo. Then I also had to replace Instagram social link with the LinkedIn one.
+
+Note that Tina Starter already included [react-icons](https://www.npmjs.com/package/react-icons) which I could immediately use.
+
+<GistCodeBlock
+  gistId="5c1a3b940b9ec776bee1240a0c055f02"
+  caption="Adding LinkedIn Social Link To Footer"
+/>
+
+## Customizing Header
+
+The file that needs change is this:
+
+```
+components/layout/header.tsx
+```
+
+I guess that you will need to replace the logo and brand with your own.
+
+## Embedding a Typeform Form Into a Page
+
+I know that Tina supports the ability to put anything in your page, including form. For example, the Tina Starter has an example of a Newsletter Sign Up form.
+
+On the other hand, my need was for a [Typeform](https://www.typeform.com/) to be embedded in the Contact Us page. That was quite easy:
+
+**New Component Block**
+
+First I created the new React component in its own file:
+
+```
+components/blocks/contactUs.tsx
+```
+
+As I explained earlier, I declared both the React Component and the schema for the data model of the content of the block:
+
+<GistCodeBlock
+  gistId="b9e86480f4e2c34955f69e2cb3ff8659"
+  caption="Contact Us React Component and Schema"
+/>
+
+Here is the most important part:
+
+On line 3:
+
+```
+import { Widget } from '@typeform/embed-react'
+```
+
+I import the `Widget` React component from the [@typeform/embed-react](https://www.npmjs.com/package/@typeform/embed-react) library.
+
+This makes it possible to embed a Typeform form inside a Nextjs generated page.
+
+**Updated Block Renderer**
+
+Then I updated the block renderer
+
+```
+components/blocks-renderer.tsx
+```
+
+to be aware of the new block and handle its rendering:
+
+![Block Renderer To Render Contact Us Block](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659894307/wheel-run/production/website/Block_Renderer_To_Render_Contact_Us_Block_nfuszs.jpg "Block Renderer To Render Contact Us Block")
+
+**Declared The Block As Available Template**
+
+Then I declared the block `contactUsBlockSchema` as available *template* for the `page` collection (inside the `.tina/schema.tsx` file).
+
+![Page Collection Schema to Include Contact Us Block](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659894424/wheel-run/production/website/page-collection-schema-to-include-contact-us-block_igl1vc.jpg "Page Collection Schema to Include Contact Us Block")
+
+## Page To Be Edited with Contextual Editing
+
+When you edit the content of a page, you have two options:
+
+1.  To edit it without actually viewing the change effects, or
+2.  To edit it and view the change effects at the same time.
+
+On the first case, you are presented with forms to key in the values that affect the content, like this:
+
+![Editing Page Content Without Looking At The Effect The Changes Have](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659894536/wheel-run/production/website/Editing_Page_Content_Without_Looking_At_The_Effect_The_Changes_Have_rcsloc.jpg "Editing Page Content Without Looking At The Effect The Changes Have")
+
+This does not let you see the effects the changes incur.
+
+On the second case, you are presented with the editing form on the left sidebar and the actual page content rendered in the middle:
+
+![Contextual Editing](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659894616/wheel-run/production/website/Contextual_Editing_ppxhfu.jpg "Contextual Editing")
+
+That second case is the *contextual editing* and if you want to have it for your pages you need to bind the page to proper routing.
+
+This is done inside the file: `.tina/schema.tsx` . It is at the bottom where you define the Tina configuration.
+
+![Contextual Editing inside Schema File](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659894692/wheel-run/production/website/Contextual_Editing_inside_Schema_File_bwnssc.jpg "Contextual Editing inside Schema File")
+
+## Rich-text Components Both in Posts and in Content Blocks
+
+The Tina Starter comes with the ability to attach different components dynamically. But only for `post` collection items, i.e. only for post pages.
+
+The components that come ready to use are:
+
+*   `BlockQuote`
+*   `DateTime`
+*   `NewsletterSignup`
+
+These blocks are made available to the `rich-text` fields of the `post` object. Look at the schema:
+
+<GistCodeBlock
+  gistId="b12f4641dd6c13908f849121734e1f02"
+  caption="rich-text Type Field Has Templates from Components"
+/>
+
+When you clone the Tina Starter, the components definitions are inside `components/posts/post.tsx`.
+
+And here is how you can introduce it into a `post` page.
+
+![Introduce Rich Text Component Into a Page](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895101/wheel-run/production/website/Introduce_Rich_Text_Component_Into_a_Page_fztb6j.jpg "Introduce Rich Text Component Into a Page")
+
+On the `body` field, which is of `rich-text` type, you can \`see an `Embed` button, which when clicked, expands to the list of components available. The list, again, is defined inside the `post` collection schema inside the `.tina/schema.tsx` file.
+
+This setup has a disadvantage. It does not allow to use these components in other blocks in other collections.
+
+Hence, what I did was to extract the components code to their own files and then import them both inside the `components/posts/post.tsx` file and inside the `components/blocks/content.tsx` file which defined the `Content` component.
+
+Initially, the `components/blocks/content.tsx` file had a very simple schema for the `body` field:
+
+```
+{  type: "rich-text",  label: "Body",  name: "body",},
+```
+
+Now, with the `components` being extracted, I changed it to this:
+
+```
+{  type: "rich-text",  label: "Body",  name: "body",  isBody: true,  templates: richTextTemplatesSchemas,},
+```
+
+With `richTextTemplatesSchemas` being the schemas for all the available components.
+
+Hence, I was able to use the rich text components in content blocks too, not only in blog posts
+
+## Github Gist Rich Text Component
+
+Although Tina gives you the ability to use code blocks in your posts and pages, what I was missing was a way to embed [Github Gists](https://gist.github.com/). Like the ones in this Medium post.
+
+I have tried using the [Script Next.js](https://nextjs.org/docs/basic-features/script) component, but this didn’t work with the Github gist embed `src` as taken from the gist page, like from here:
+
+![Github Gist Embed](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895204/wheel-run/production/website/Github_Gist_Embed_mdinbx.jpg "Github Gist Embed")
+
+But then, I googled and found [react-gist](https://github.com/tleunen/react-gist), a React component that embeds a Github gist seamlessly.
+
+With this tool at hand, I only had to create a new rich text component and make it available for use. Here are the steps:
+
+**Declare the Component Schema**
+
+![The Schema of the Gist Code Block](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895313/wheel-run/production/website/The_Schema_of_the_Gist_Code_Block_qdghfs.jpg "The Schema of the Gist Code Block")
+
+I declared the schema inside the file
+
+```
+components/schemas/gistCodeBlockTemplateSchema.ts
+```
+
+As you can see from the schema, I declared two fields:
+
+*   The `gistId` which will store the ID of the gist as you can get it from its url.
+*   The `gistFile` which is only useful for gists that they have many files.
+
+**Make Gist Clode Block Available**
+
+In order to make the Gist Code Block available as an option to embed into a rich text block, like the Block Quote or the Date Time or the Newsletter Signup one, we just add it to the array of templates `richtTextTemplateSchema`.
+
+File
+
+```
+components/schemas/richTextTemplatesSchemas.ts
+```
+
+![Add Gist Code Block Schema to Rich Text Templates](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895469/wheel-run/production/website/Add_Gist_Code_Block_Schema_to_Rich_Text_Templates_fvlquf.jpg "Add Gist Code Block Schema to Rich Text Templates")
+
+**Implement Gist Code Block Component**
+
+Then we implement the Gist Code Block as a `Component` inside the file
+
+```
+components/util/components.tsx
+```
+
+![Implement GistCodeBlock Inside Components](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895609/wheel-run/production/website/Implement_GistCodeBlock_Inside_Components_xmhyhz.jpg "Implement GistCodeBlock Inside Components")
+
+That’s it!
+
+Then I am able to use it via the Tina UI when editing a blog post rich text. It appears as an option on the `Embed` button.
+
+![Embedding a Gist Code Block](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895698/wheel-run/production/website/Embedding_a_Gist_Code_Block_m7eg7w.jpg "Embedding a Gist Code Block")
+
+As you can see above, it is very easy to embed the gist code block from the `Embed` drop-down menu. Then you click on the three vertical ellipsis button and you can go to the edit in which you specify the gist id and, optionally, the gist file.
+
+![Gist Code Block Edit](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895801/wheel-run/production/website/Gist_Code_Block_Edit_m3ujiq.jpg "Gist Code Block Edit")
+
+## Sitemap.xml
+
+For having the `sitemap.xml` generated automatically, I am relying on the fantastic library [next-sitemap](https://www.npmjs.com/package/next-sitemap).
+
+Note that I had to create its configuration inside the file:
+
+```
+next-sitemap.config.mjs
+```
+
+Watch for the `.mjs` filename extension. Otherwise, it will not be parsed successfully.
+
+On top of that, I had to invoke it as a `postbuild` like this:
+
+```
+"postbuild": "next-sitemap --config next-sitemap.config.mjs",
+```
+
+You may want to tune the configuration to exclude some paths from being included in the sitemap. For example, I have excluded the `/admin` path. Also, I have decided to go with a single sitemap file and not a sitemap index. But, if you have a website with a big number of pages, you may be better do with sitemap index generation.
+
+<GistCodeBlock
+  gistId="faaa48633e1da05c77ce808a3fe9179f"
+  caption="Sitemap Generator Configuration"
+/>
+
+## Environment Variables in Production
+
+If you are using Vercel, as I did, make sure that you set up the correct values for the environment variables for the `Production` environment.
+
+For example, the sitemap generator is looking for the `SITE_URL` environment variable. Go to Vercel project settings and set the correct value:
+
+![Setting Production Environment Variables](https://res.cloudinary.com/oneth0usandwords/image/upload/v1659895967/wheel-run/production/website/Setting_Production_Environment_Variables_q2mdz6.jpg "Setting Production Environment Variables")
+
+# Closing Note
+
+I have moved from Webflow to Tina, not because Webflow is bad, but because Webflow is not developer-friendly. This blog post explained the main steps I took to instantiate a web site using Tina. It included some hint and advices.
+
+As always, I learn much more from you than you might learn from me. Hence, your feedback in the comments below is more than welcome. Thank you in advance.
