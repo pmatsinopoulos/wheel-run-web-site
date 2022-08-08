@@ -34,6 +34,10 @@ export default function BlogPostPage(
                 content: data.post.date,
               },
               {
+                property: "article:published_date",
+                content: data.post.date,
+              },
+              {
                 property: "article:modified_time",
                 content: data.post.date,
               },
