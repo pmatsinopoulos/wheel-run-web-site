@@ -23,7 +23,7 @@ export default function BlogPostPage(
           og: {
             ...data.post.meta?.og,
             type: 'article',
-            image: data.post.heroImg,
+            image: data.post.heroImg?.image,
             namespace: {
               value: 'article',
               uri: 'https://ogp.me/ns/article',
