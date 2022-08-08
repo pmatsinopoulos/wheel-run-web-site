@@ -23,7 +23,7 @@ export default function BlogPostPage(
           og: {
             ...data.post.meta?.og,
             type: 'article',
-            image: data.post.heroImg,
+            image: data.post.heroImg?.image,
             namespace: {
               value: 'article',
               uri: 'https://ogp.me/ns/article',
@@ -31,6 +31,10 @@ export default function BlogPostPage(
             customMeta: [
               {
                 property: "article:published_time",
+                content: data.post.date,
+              },
+              {
+                property: "article:published_date",
                 content: data.post.date,
               },
               {
