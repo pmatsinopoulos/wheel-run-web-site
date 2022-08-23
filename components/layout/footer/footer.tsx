@@ -51,6 +51,9 @@ export const Footer = ({ data, icon, rawData }) => {
                    className="max-w-[42px] rounded-full"/>
             </a>
           </Link>
+          <div>
+            <a href="/privacy-policy">Privacy Policy</a>
+          </div>
           <div className="flex gap-4">
             {data.social && data.social.facebook && (
               <a
