@@ -7,11 +7,11 @@ blocks:
       # Contact Us
 
 
-      ## We will respond ASAP
+      ## We will respond soon
 
 
       Send us your message using the form below and we will try to get back to
-      you as soon as possible.
+      you very soon.
     color: tint
     marginBottom: mb-1
     _template: content
@@ -25,4 +25,3 @@ meta:
     image: >-
       https://res.cloudinary.com/oneth0usandwords/image/upload/v1658642896/wheel-run/production/website/shelby_lyvice.jpg
 ---
-
